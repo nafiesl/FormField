@@ -95,4 +95,18 @@ class FormFieldTest extends TestCase
         $textFieldString = '<div class="form-group "><label for="price" class="control-label">Price</label>&nbsp;<div class="input-group"><span class="input-group-addon">Rp</span><input class="form-control text-right" name="price" type="text" id="price"></div></div>';
         $this->assertEquals($textFieldString, $this->formField->price('price'));
     }
+
+    /** @test */
+    public function it_returns_text_field_with_addon_before()
+    {
+        $textFieldString = '<div class="form-group "><label for="key" class="control-label">Key</label>&nbsp;<div class="input-group"><span class="input-group-addon">$</span><input class="form-control" name="key" type="text" id="key"></div></div>';
+        $this->assertEquals($textFieldString, $this->formField->text('key', ['addon' => ['before' => '$']]));
+    }
+
+    /** @test */
+    public function it_returns_text_field_with_addon_after()
+    {
+        $textFieldString = '<div class="form-group "><label for="key" class="control-label">Key</label>&nbsp;<div class="input-group"><input class="form-control" name="key" type="text" id="key"><span class="input-group-addon">Days</span></div></div>';
+        $this->assertEquals($textFieldString, $this->formField->text('key', ['addon' => ['after' => 'Days']]));
+    }
 }
