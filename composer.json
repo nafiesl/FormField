@@ -1,0 +1,21 @@
+{
+    "name": "luthfi/formfield",
+    "description": "Form Field helper class for Laravel 5.2 with Twitter Bootstrap",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nafies Luthfi",
+            "email": "nafiesl@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Luthfi\\FormField": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "5.2.*",
+        "laravelcollective/html": "5.2.*"
+    }
+}
