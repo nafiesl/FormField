@@ -1,6 +1,7 @@
 <?php
 
 use Luthfi\FormField\FormField;
+use Luthfi\FormField\FormFieldFacade as FFF;
 
 class FormFieldTest extends TestCase
 {
@@ -10,6 +11,12 @@ class FormFieldTest extends TestCase
     {
         parent::setUp();
         $this->formField = new FormField;
+    }
+
+    /** @test */
+    public function it_has_facade_accessor()
+    {
+        $this->assertEquals(FFF::text('key'), $this->formField->text('key'));
     }
 
     /** @test */

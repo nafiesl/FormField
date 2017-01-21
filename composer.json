@@ -1,6 +1,6 @@
 {
     "name": "luthfi/formfield",
-    "description": "Form Field helper class for Laravel 5.2 with Twitter Bootstrap",
+    "description": "Form Field helper class for Laravel 5.3 with Twitter Bootstrap",
     "license": "MIT",
     "authors": [
         {
@@ -15,7 +15,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "illuminate/support": "5.2.*",
-        "laravelcollective/html": "5.2.*"
+        "illuminate/support": "5.3.*",
+        "laravelcollective/html": "5.3.*"
     }
 }
