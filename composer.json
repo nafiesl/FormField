@@ -10,7 +10,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Luthfi\\FormField": "src/"
+            "Luthfi\\FormField\\": "src/"
         }
     },
     "minimum-stability": "dev",
