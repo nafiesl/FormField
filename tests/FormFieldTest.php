@@ -20,6 +20,20 @@ class FormFieldTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_form_open()
+    {
+        $textFieldString = '<form method="POST" action="http://localhost" accept-charset="UTF-8"><input name="_token" type="hidden">';
+        $this->assertEquals($textFieldString, $this->formField->open());
+    }
+
+    /** @test */
+    public function it_returns_form_close()
+    {
+        $textFieldString = '</form>';
+        $this->assertEquals($textFieldString, $this->formField->close());
+    }
+
+    /** @test */
     public function it_returns_text_field()
     {
         $textFieldString = '<div class="form-group "><label for="key" class="control-label">Key</label>&nbsp;<input class="form-control" name="key" type="text" id="key"></div>';

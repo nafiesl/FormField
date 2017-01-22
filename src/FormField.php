@@ -21,6 +21,16 @@ class FormField
         $this->errorBag = Session::get('errors', new MessageBag);
     }
 
+    public function open($options = [])
+    {
+        return FormFacade::open($options);
+    }
+
+    public function close()
+    {
+        return FormFacade::close();
+    }
+
     public function text($name, $options = [])
     {
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
