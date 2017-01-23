@@ -241,17 +241,11 @@ class FormField
         return $htmlForm;
     }
 
-    public function delete($form_params = [], $button_label = 'x', $button_options = [], $hiddenFields = [])
+    public function formButton($form_params = [], $button_label = 'x', $button_options = [], $hiddenFields = [])
     {
-        $form_params['method'] = 'delete';
-        $form_params['class'] = isset($form_params['class']) ? $form_params['class'] : 'del-form';
+        $form_params['method'] = isset($form_params['method']) ? $form_params['method'] : 'post';
+        $form_params['class'] = isset($form_params['class']) ? $form_params['class'] : '';
         $form_params['style'] = isset($form_params['style']) ? $form_params['style'] : 'display:inline';
-
-        if (! isset($button_options['class']))
-            $button_options['class'] = 'pull-right';
-
-        if (! isset($button_options['title']))
-            $button_options['title'] = 'Remove this';
 
         $htmlForm = FormFacade::open($form_params);
         if (!empty($hiddenFields))
@@ -261,10 +255,27 @@ class FormField
                 $htmlForm .= FormFacade::hidden($k, $v);
             }
         }
-        $htmlForm .= FormFacade::submit($button_label, $button_options);
+
+        $btnOptions = '';
+        foreach ($button_options as $key => $value)
+            $btnOptions .= $key . '="' . $value . '" ';
+
+        $htmlForm .= '<button ' . $btnOptions . 'type="submit">' . $button_label . '</button>';
         $htmlForm .= FormFacade::close();
 
         return $htmlForm;
+    }
+
+    public function delete($form_params = [], $button_label = 'x', $button_options = [], $hiddenFields = [])
+    {
+        $form_params['method'] = 'delete';
+        $form_params['class'] = isset($form_params['class']) ? $form_params['class'] : 'del-form pull-right';
+        $form_params['onsubmit'] = isset($form_params['onsubmit']) && $form_params['onsubmit'] == false ? '' : 'return confirm("' . trans('app.delete_confirm') . '")';
+
+        if (! isset($button_options['title']))
+            $button_options['title'] = 'Delete this item';
+
+        return $this->formButton($form_params, $button_label, $button_options, $hiddenFields);
     }
 
     public function arrays($name, array $fieldKeys, $options = [])
