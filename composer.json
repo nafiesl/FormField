@@ -17,5 +17,8 @@
     "require": {
         "illuminate/support": "5.3.*",
         "laravelcollective/html": "5.3.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.0"
     }
 }

@@ -2,6 +2,7 @@
 
 use Luthfi\FormField\FormField;
 use Luthfi\FormField\FormFieldFacade as FFF;
+use Orchestra\Testbench\TestCase;
 
 class FormFieldTest extends TestCase
 {
@@ -11,6 +12,13 @@ class FormFieldTest extends TestCase
     {
         parent::setUp();
         $this->formField = new FormField;
+    }
+
+    protected function getPackageProviders($app)
+    {
+        return [
+            Luthfi\FormField\FormFieldServiceProvider::class,
+        ];
     }
 
     /** @test */
