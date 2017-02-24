@@ -1,4 +1,7 @@
-# Laravel Boostrap Form Field [![Build Status](https://travis-ci.org/nafiesl/FormField.svg?branch=master)](https://travis-ci.org/nafiesl/FormField)
+# Laravel Boostrap Form Field
+[![StyleCI](https://styleci.io/repos/79648139/shield?branch=master)](https://styleci.io/repos/79648139)
+[![Build Status](https://travis-ci.org/nafiesl/FormField.svg?branch=master)](https://travis-ci.org/nafiesl/FormField)
+
 This is form fields wrapper for laravel with bootstrap 3
 
 ## How to install
