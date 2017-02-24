@@ -11,7 +11,7 @@ class FormFieldTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->formField = new FormField;
+        $this->formField = new FormField();
     }
 
     protected function getPackageProviders($app)
@@ -66,14 +66,14 @@ class FormFieldTest extends TestCase
     public function it_returns_select_field()
     {
         $textFieldString = '<div class="form-group "><label for="key" class="control-label">Key</label>&nbsp;<select class="form-control" id="key" name="key"><option selected="selected" value="">-- Pilih Key --</option><option value="1">Satu</option><option value="2">Dua</option></select></div>';
-        $this->assertEquals($textFieldString, $this->formField->select('key', [1 => 'Satu',2 => 'Dua']));
+        $this->assertEquals($textFieldString, $this->formField->select('key', [1 => 'Satu', 2 => 'Dua']));
     }
 
     /** @test */
     public function it_returns_multi_select_field()
     {
         $textFieldString = '<div class="form-group "><label for="key" class="control-label">Key</label>&nbsp;<select class="form-control" multiple="multiple" name="key[]" id="key"><option selected="selected" value="">-- Pilih Key --</option><option value="1">Satu</option><option value="2">Dua</option></select></div>';
-        $this->assertEquals($textFieldString, $this->formField->multiSelect('key', [1 => 'Satu',2 => 'Dua']));
+        $this->assertEquals($textFieldString, $this->formField->multiSelect('key', [1 => 'Satu', 2 => 'Dua']));
     }
 
     /** @test */
@@ -94,14 +94,14 @@ class FormFieldTest extends TestCase
     public function it_returns_radios_field()
     {
         $textFieldString = '<div class="form-group "><label for="radios" class="control-label">Radios</label>&nbsp;<ul class="radio list-inline"><li><label for="radios_1"><input id="radios_1" name="radios" type="radio" value="1">Satu&nbsp;</label></li><li><label for="radios_2"><input id="radios_2" name="radios" type="radio" value="2">Dua&nbsp;</label></li></ul></div>';
-        $this->assertEquals($textFieldString, $this->formField->radios('radios', [1 => 'Satu',2 => 'Dua']));
+        $this->assertEquals($textFieldString, $this->formField->radios('radios', [1 => 'Satu', 2 => 'Dua']));
     }
 
     /** @test */
     public function it_returns_checkboxes_field()
     {
         $textFieldString = '<div class="form-group "><label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;<ul class="checkbox list-inline"><li><label for="checkboxes_1"><input id="checkboxes_1" name="checkboxes[]" type="checkbox" value="1">Satu&nbsp;</label></li><li><label for="checkboxes_2"><input id="checkboxes_2" name="checkboxes[]" type="checkbox" value="2">Dua&nbsp;</label></li></ul></div>';
-        $this->assertEquals($textFieldString, $this->formField->checkboxes('checkboxes', [1 => 'Satu',2 => 'Dua']));
+        $this->assertEquals($textFieldString, $this->formField->checkboxes('checkboxes', [1 => 'Satu', 2 => 'Dua']));
     }
 
     /** @test */
@@ -142,18 +142,18 @@ class FormFieldTest extends TestCase
     /** @test */
     public function it_returns_form_button()
     {
-        $textFieldString = '<form method="POST" action="' . url('/') . '" accept-charset="UTF-8" class="" style="display:inline">';
+        $textFieldString = '<form method="POST" action="'.url('/').'" accept-charset="UTF-8" class="" style="display:inline">';
         $textFieldString .= '<input name="_token" type="hidden">';
         $textFieldString .= '<input name="hidden_field" type="hidden" value="hidden_field_value">';
-        $textFieldString .= '<button class="btn btn-default" type="submit">' . trans('app.add') . '</button>';
+        $textFieldString .= '<button class="btn btn-default" type="submit">'.trans('app.add').'</button>';
         $textFieldString .= '</form>';
         $this->assertEquals(
             $textFieldString,
             $this->formField->formButton(
                 ['url'=> '/'],
                 trans('app.add'),
-                ['class'=>'btn btn-default'],
-                ['hidden_field'=>'hidden_field_value']
+                ['class'       => 'btn btn-default'],
+                ['hidden_field'=> 'hidden_field_value']
             )
         );
     }
@@ -161,22 +161,22 @@ class FormFieldTest extends TestCase
     /** @test */
     public function it_returns_delete_button()
     {
-        $textFieldString = '<form method="POST" action="' . url('/') . '"';
+        $textFieldString = '<form method="POST" action="'.url('/').'"';
         $textFieldString .= ' accept-charset="UTF-8" class="del-form pull-right"';
-        $textFieldString .= ' onsubmit="return confirm(&quot;' . trans('app.delete_confirm') . '&quot;)"';
+        $textFieldString .= ' onsubmit="return confirm(&quot;'.trans('app.delete_confirm').'&quot;)"';
         $textFieldString .= ' style="display:inline">';
         $textFieldString .= '<input name="_method" type="hidden" value="DELETE">';
         $textFieldString .= '<input name="_token" type="hidden">';
         $textFieldString .= '<input name="hidden_field" type="hidden" value="hidden_field_value">';
-        $textFieldString .= '<button class="btn btn-default" title="Delete this item" type="submit">' . trans('app.delete') . '</button>';
+        $textFieldString .= '<button class="btn btn-default" title="Delete this item" type="submit">'.trans('app.delete').'</button>';
         $textFieldString .= '</form>';
         $this->assertEquals(
             $textFieldString,
             $this->formField->delete(
                 ['url'=> '/'],
                 trans('app.delete'),
-                ['class'=>'btn btn-default'],
-                ['hidden_field'=>'hidden_field_value']
+                ['class'       => 'btn btn-default'],
+                ['hidden_field'=> 'hidden_field_value']
             )
         );
     }

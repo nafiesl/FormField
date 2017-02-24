@@ -8,8 +8,8 @@ use Illuminate\Support\MessageBag;
 use Session;
 
 /**
-* FormField Class (Site FormField Service)
-*/
+ * FormField Class (Site FormField Service).
+ */
 class FormField
 {
     protected $errorBag;
@@ -18,7 +18,7 @@ class FormField
 
     public function __construct()
     {
-        $this->errorBag = Session::get('errors', new MessageBag);
+        $this->errorBag = Session::get('errors', new MessageBag());
     }
 
     public function open($options = [])
@@ -34,37 +34,57 @@ class FormField
     public function text($name, $options = [])
     {
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group ' . $hasError . '">';
+        $htmlForm = '<div class="form-group '.$hasError.'">';
 
         $value = isset($options['value']) ? $options['value'] : null;
         $type = isset($options['type']) ? $options['type'] : 'text';
 
         $fieldParams = ['class'=>'form-control'];
-        if (isset($options['class'])) { $fieldParams['class'] .= ' ' . $options['class']; }
+        if (isset($options['class'])) {
+            $fieldParams['class'] .= ' '.$options['class'];
+        }
 
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
-        if (isset($options['addon'])) { $htmlForm .= '<div class="input-group">'; }
-        if (isset($options['addon']['before'])) {
-            $htmlForm .= '<span class="input-group-addon">' . $options['addon']['before'] . '</span>';
+        if (isset($options['addon'])) {
+            $htmlForm .= '<div class="input-group">';
         }
-        if (isset($options['readonly']) && $options['readonly'] == true) { $fieldParams += ['readonly']; }
-        if (isset($options['disabled']) && $options['disabled'] == true) { $fieldParams += ['disabled']; }
-        if (isset($options['required']) && $options['required'] == true) { $fieldParams += ['required']; }
-        if (isset($options['min'])) { $fieldParams += ['min' => $options['min']]; }
-        if (isset($options['placeholder'])) { $fieldParams += ['placeholder' => $options['placeholder']]; }
-        if (isset($options['style'])) { $fieldParams += ['style' => $options['style']]; }
-        if (isset($options['id'])) { $fieldParams += ['id' => $options['id']]; }
+        if (isset($options['addon']['before'])) {
+            $htmlForm .= '<span class="input-group-addon">'.$options['addon']['before'].'</span>';
+        }
+        if (isset($options['readonly']) && $options['readonly'] == true) {
+            $fieldParams += ['readonly'];
+        }
+        if (isset($options['disabled']) && $options['disabled'] == true) {
+            $fieldParams += ['disabled'];
+        }
+        if (isset($options['required']) && $options['required'] == true) {
+            $fieldParams += ['required'];
+        }
+        if (isset($options['min'])) {
+            $fieldParams += ['min' => $options['min']];
+        }
+        if (isset($options['placeholder'])) {
+            $fieldParams += ['placeholder' => $options['placeholder']];
+        }
+        if (isset($options['style'])) {
+            $fieldParams += ['style' => $options['style']];
+        }
+        if (isset($options['id'])) {
+            $fieldParams += ['id' => $options['id']];
+        }
 
         $htmlForm .= FormFacade::input($type, $name, $value, $fieldParams);
 
         if (isset($options['addon']['after'])) {
-            $htmlForm .= '<span class="input-group-addon">' . $options['addon']['after'] . '</span>';
+            $htmlForm .= '<span class="input-group-addon">'.$options['addon']['after'].'</span>';
         }
-        if (isset($options['addon'])) { $htmlForm .= '</div>'; }
+        if (isset($options['addon'])) {
+            $htmlForm .= '</div>';
+        }
         if (isset($options['info'])) {
             $class = isset($options['info']['class']) ? $options['info']['class'] : 'info';
-            $htmlForm .= '<p class="text-' . $class . ' small">' . $options['info']['text'] . '</p>';
+            $htmlForm .= '<p class="text-'.$class.' small">'.$options['info']['text'].'</p>';
         }
         $htmlForm .= $this->errorBag->first($name, '<span class="form-error">:message</span>');
 
@@ -76,17 +96,25 @@ class FormField
     public function textarea($name, $options = [])
     {
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group ' . $hasError . '">';
+        $htmlForm = '<div class="form-group '.$hasError.'">';
 
         $rows = isset($options['rows']) ? $options['rows'] : 3;
         $value = isset($options['value']) ? $options['value'] : null;
 
-        $fieldParams = ['class'=>'form-control','rows' => $rows];
+        $fieldParams = ['class'=>'form-control', 'rows' => $rows];
 
-        if (isset($options['readonly']) && $options['readonly'] == true) { $fieldParams += ['readonly']; }
-        if (isset($options['disabled']) && $options['disabled'] == true) { $fieldParams += ['disabled']; }
-        if (isset($options['required']) && $options['required'] == true) { $fieldParams += ['required']; }
-        if (isset($options['placeholder'])) { $fieldParams += ['placeholder' => $options['placeholder']]; }
+        if (isset($options['readonly']) && $options['readonly'] == true) {
+            $fieldParams += ['readonly'];
+        }
+        if (isset($options['disabled']) && $options['disabled'] == true) {
+            $fieldParams += ['disabled'];
+        }
+        if (isset($options['required']) && $options['required'] == true) {
+            $fieldParams += ['required'];
+        }
+        if (isset($options['placeholder'])) {
+            $fieldParams += ['placeholder' => $options['placeholder']];
+        }
 
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
@@ -100,21 +128,32 @@ class FormField
     public function select($name, $selectOptions, $options = [])
     {
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group ' . $hasError . '">';
+        $htmlForm = '<div class="form-group '.$hasError.'">';
 
         $value = isset($options['value']) ? $options['value'] : null;
 
         $fieldParams = ['class'=>'form-control'];
-        if (isset($options['class'])) { $fieldParams['class'] .= ' ' . $options['class']; }
+        if (isset($options['class'])) {
+            $fieldParams['class'] .= ' '.$options['class'];
+        }
 
-        if (isset($options['readonly']) && $options['readonly'] == true) { $fieldParams += ['readonly']; }
-        if (isset($options['disabled']) && $options['disabled'] == true) { $fieldParams += ['disabled']; }
-        if (isset($options['required']) && $options['required'] == true) { $fieldParams += ['required']; }
-        if (isset($options['multiple']) && $options['multiple'] == true) { $fieldParams += ['multiple', 'name' => $name . '[]']; }
-        if (isset($options['placeholder']))
+        if (isset($options['readonly']) && $options['readonly'] == true) {
+            $fieldParams += ['readonly'];
+        }
+        if (isset($options['disabled']) && $options['disabled'] == true) {
+            $fieldParams += ['disabled'];
+        }
+        if (isset($options['required']) && $options['required'] == true) {
+            $fieldParams += ['required'];
+        }
+        if (isset($options['multiple']) && $options['multiple'] == true) {
+            $fieldParams += ['multiple', 'name' => $name.'[]'];
+        }
+        if (isset($options['placeholder'])) {
             $fieldParams += ['placeholder' => $options['placeholder']];
-        else
-            $fieldParams += ['placeholder' => '-- Pilih ' . $this->formatFieldLabel(str_replace('_id', '', $name)) . ' --'];
+        } else {
+            $fieldParams += ['placeholder' => '-- Pilih '.$this->formatFieldLabel(str_replace('_id', '', $name)).' --'];
+        }
 
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
@@ -136,12 +175,14 @@ class FormField
     public function email($name, $options = [])
     {
         $options['type'] = 'email';
+
         return $this->text($name, $options);
     }
 
     public function password($name, $options = [])
     {
         $options['type'] = 'password';
+
         return $this->text($name, $options);
     }
 
@@ -149,21 +190,24 @@ class FormField
     {
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
 
-        $htmlForm = '<div class="form-group ' . $hasError . '">';
+        $htmlForm = '<div class="form-group '.$hasError.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
         $listStyle = isset($options['list_style']) ? $options['list_style'] : 'inline';
-        $htmlForm .= '<ul class="radio list-' . $listStyle . '">';
+        $htmlForm .= '<ul class="radio list-'.$listStyle.'">';
 
         foreach ($radioOptions as $key => $option) {
-
             $value = null;
-            $fieldParams = ['id' => $name . '_' . $key];
+            $fieldParams = ['id' => $name.'_'.$key];
 
-            if (isset($options['value']) && $options['value'] == $key) { $value = true; }
-            if (isset($options['v-model'])) { $fieldParams += ['v-model' => $options['v-model']]; }
+            if (isset($options['value']) && $options['value'] == $key) {
+                $value = true;
+            }
+            if (isset($options['v-model'])) {
+                $fieldParams += ['v-model' => $options['v-model']];
+            }
 
-            $htmlForm .= '<li><label for="' . $name . '_' . $key . '">';
+            $htmlForm .= '<li><label for="'.$name.'_'.$key.'">';
             $htmlForm .= FormFacade::radio($name, $key, $value, $fieldParams);
             $htmlForm .= $option;
             $htmlForm .= '&nbsp;</label></li>';
@@ -179,21 +223,23 @@ class FormField
     public function checkboxes($name, array $checkboxOptions, $options = [])
     {
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group ' . $hasError . '">';
+        $htmlForm = '<div class="form-group '.$hasError.'">';
 
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
         $listStyle = isset($options['list_style']) ? $options['list_style'] : 'inline';
-        $htmlForm .= '<ul class="checkbox list-' . $listStyle . '">';
+        $htmlForm .= '<ul class="checkbox list-'.$listStyle.'">';
 
-        $value = isset($options['value']) ? $options['value'] : new Collection;
+        $value = isset($options['value']) ? $options['value'] : new Collection();
 
         foreach ($checkboxOptions as $key => $option) {
-            $fieldParams = ['id' => $name . '_' . $key];
-            if (isset($options['v-model'])) { $fieldParams += ['v-model' => $options['v-model']]; }
+            $fieldParams = ['id' => $name.'_'.$key];
+            if (isset($options['v-model'])) {
+                $fieldParams += ['v-model' => $options['v-model']];
+            }
 
-            $htmlForm .= '<li><label for="' . $name . '_' . $key . '">';
-            $htmlForm .= FormFacade::checkbox($name . '[]', $key, $value->contains($key), $fieldParams);
+            $htmlForm .= '<li><label for="'.$name.'_'.$key.'">';
+            $htmlForm .= FormFacade::checkbox($name.'[]', $key, $value->contains($key), $fieldParams);
             $htmlForm .= $option;
             $htmlForm .= '&nbsp;</label></li>';
         }
@@ -210,7 +256,7 @@ class FormField
 
         $htmlForm = '<div class="form-group">';
         $htmlForm .= FormFacade::label($name, $label, ['class'=>'control-label']);
-        $htmlForm .= '<div class="form-control" readonly>' . $value . '</div>';
+        $htmlForm .= '<div class="form-control" readonly>'.$value.'</div>';
         $htmlForm .= '</div>';
 
         return $htmlForm;
@@ -221,19 +267,21 @@ class FormField
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
         $label = isset($options['label']) ? $options['label'] : $this->formatFieldLabel($name);
 
-        $htmlForm = '<div class="form-group ' . $hasError . '">';
+        $htmlForm = '<div class="form-group '.$hasError.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
         $fieldParams = ['class'=>'form-control'];
-        if (isset($options['class'])) { $fieldParams['class'] .= ' ' . $options['class']; }
+        if (isset($options['class'])) {
+            $fieldParams['class'] .= ' '.$options['class'];
+        }
         if (isset($options['multiple']) && $options['multiple'] == true) {
-            $name = $name . '[]';
+            $name = $name.'[]';
             $fieldParams += ['multiple' => true];
         }
 
         $htmlForm .= FormFacade::file($name, $fieldParams);
         if (isset($options['info'])) {
-            $htmlForm .= '<p class="text-' . $options['info']['class'] . ' small">' . $options['info']['text'] . '</p>';
+            $htmlForm .= '<p class="text-'.$options['info']['class'].' small">'.$options['info']['text'].'</p>';
         }
         $htmlForm .= $this->errorBag->first($name, '<span class="form-error">:message</span>');
         $htmlForm .= '</div>';
@@ -248,19 +296,18 @@ class FormField
         $form_params['style'] = isset($form_params['style']) ? $form_params['style'] : 'display:inline';
 
         $htmlForm = FormFacade::open($form_params);
-        if (!empty($hiddenFields))
-        {
-            foreach ($hiddenFields as $k => $v)
-            {
+        if (!empty($hiddenFields)) {
+            foreach ($hiddenFields as $k => $v) {
                 $htmlForm .= FormFacade::hidden($k, $v);
             }
         }
 
         $btnOptions = '';
-        foreach ($button_options as $key => $value)
-            $btnOptions .= $key . '="' . $value . '" ';
+        foreach ($button_options as $key => $value) {
+            $btnOptions .= $key.'="'.$value.'" ';
+        }
 
-        $htmlForm .= '<button ' . $btnOptions . 'type="submit">' . $button_label . '</button>';
+        $htmlForm .= '<button '.$btnOptions.'type="submit">'.$button_label.'</button>';
         $htmlForm .= FormFacade::close();
 
         return $htmlForm;
@@ -270,10 +317,11 @@ class FormField
     {
         $form_params['method'] = 'delete';
         $form_params['class'] = isset($form_params['class']) ? $form_params['class'] : 'del-form pull-right';
-        $form_params['onsubmit'] = isset($form_params['onsubmit']) && $form_params['onsubmit'] == false ? '' : 'return confirm("' . trans('app.delete_confirm') . '")';
+        $form_params['onsubmit'] = isset($form_params['onsubmit']) && $form_params['onsubmit'] == false ? '' : 'return confirm("'.trans('app.delete_confirm').'")';
 
-        if (! isset($button_options['title']))
+        if (!isset($button_options['title'])) {
             $button_options['title'] = 'Delete this item';
+        }
 
         return $this->formButton($form_params, $button_label, $button_options, $hiddenFields);
     }
@@ -283,18 +331,18 @@ class FormField
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
         $label = isset($options['label']) ? $options['label'] : $this->formatFieldLabel($name);
 
-        $htmlForm = '<div class="form-group ' . $hasError . '">';
+        $htmlForm = '<div class="form-group '.$hasError.'">';
         $htmlForm .= FormFacade::label($name, $label, ['class'=>'control-label']);
 
         if (empty($contents) == false) {
             foreach ($checkboxOptions as $key => $option) {
                 $htmlForm .= '<div class="row">';
-                $htmlForm .= FormFacade::text($name . '[]', $key);
+                $htmlForm .= FormFacade::text($name.'[]', $key);
                 $htmlForm .= '</div>';
             }
         }
 
-        $htmlForm .= '<div class="new-' . $name . ' row">';
+        $htmlForm .= '<div class="new-'.$name.' row">';
         $htmlForm .= '<div class="col-md-4">';
         $htmlForm .= FormFacade::text($fieldKeys[0], null, ['class' => 'form-control']);
         $htmlForm .= '</div>';
@@ -319,6 +367,7 @@ class FormField
     {
         $options['addon'] = ['before' => isset($options['currency']) ? $options['currency'] : 'Rp'];
         $options['class'] = 'text-right';
+
         return $this->text($name, $options);
     }
 
@@ -326,9 +375,10 @@ class FormField
     {
         if (isset($options['label']) && $options['label'] != false) {
             $label = isset($options['label']) ? $options['label'] : $this->formatFieldLabel($name);
-            return FormFacade::label($name, $label, ['class'=>'control-label']) . '&nbsp;';
-        } elseif (! isset($options['label'])) {
-            return FormFacade::label($name, $this->formatFieldLabel($name), ['class'=>'control-label']) . '&nbsp;';
+
+            return FormFacade::label($name, $label, ['class'=>'control-label']).'&nbsp;';
+        } elseif (!isset($options['label'])) {
+            return FormFacade::label($name, $this->formatFieldLabel($name), ['class'=>'control-label']).'&nbsp;';
         }
     }
 
