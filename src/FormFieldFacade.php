@@ -6,5 +6,8 @@ use Illuminate\Support\Facades\Facade;
 
 class FormFieldFacade extends Facade
 {
-    protected static function getFacadeAccessor() { return 'formField'; }
+    protected static function getFacadeAccessor()
+    {
+        return 'formField';
+    }
 }
