@@ -15,8 +15,8 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "illuminate/support": "5.3.*",
-        "laravelcollective/html": "5.3.*"
+        "illuminate/support": "5.2.* || 5.3.* || 5.4.*",
+        "laravelcollective/html": "5.2.* || 5.3.* || 5.4.*"
     },
     "require-dev": {
         "orchestra/testbench": "~3.0"
