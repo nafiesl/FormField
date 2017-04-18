@@ -20,7 +20,7 @@ class FormFieldServiceProvider extends ServiceProvider
                 new HtmlBuilder($app['url'],
                 $app['view']),
                 $app['url'], $app['view'],
-                $app['session.store']->getToken()
+                $app['session.store']->token()
             );
 
             return $form->setSessionStore($app['session.store']);
