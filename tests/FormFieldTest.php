@@ -144,16 +144,14 @@ class FormFieldTest extends TestCase
     {
         $textFieldString = '<form method="POST" action="'.url('/').'" accept-charset="UTF-8" class="" style="display:inline">';
         $textFieldString .= '<input name="_token" type="hidden">';
-        $textFieldString .= '<input name="hidden_field" type="hidden" value="hidden_field_value">';
-        $textFieldString .= '<button class="btn btn-default" type="submit">'.trans('app.add').'</button>';
+        $textFieldString .= '<button class="btn btn-default" type="submit">Submit with Button</button>';
         $textFieldString .= '</form>';
         $this->assertEquals(
             $textFieldString,
             $this->formField->formButton(
                 ['url'=> '/'],
-                trans('app.add'),
-                ['class'       => 'btn btn-default'],
-                ['hidden_field'=> 'hidden_field_value']
+                'Submit with Button',
+                ['class'       => 'btn btn-default']
             )
         );
     }
@@ -163,20 +161,18 @@ class FormFieldTest extends TestCase
     {
         $textFieldString = '<form method="POST" action="'.url('/').'"';
         $textFieldString .= ' accept-charset="UTF-8" class="del-form pull-right"';
-        $textFieldString .= ' onsubmit="return confirm(&quot;'.trans('app.delete_confirm').'&quot;)"';
+        $textFieldString .= ' onsubmit="return confirm(&quot;Are you sure to delete this?&quot;)"';
         $textFieldString .= ' style="display:inline">';
         $textFieldString .= '<input name="_method" type="hidden" value="DELETE">';
         $textFieldString .= '<input name="_token" type="hidden">';
-        $textFieldString .= '<input name="hidden_field" type="hidden" value="hidden_field_value">';
-        $textFieldString .= '<button class="btn btn-default" title="Delete this item" type="submit">'.trans('app.delete').'</button>';
+        $textFieldString .= '<button class="btn btn-default" title="Delete this item" type="submit">Delete this Item</button>';
         $textFieldString .= '</form>';
         $this->assertEquals(
             $textFieldString,
             $this->formField->delete(
                 ['url'=> '/'],
-                trans('app.delete'),
-                ['class'       => 'btn btn-default'],
-                ['hidden_field'=> 'hidden_field_value']
+                'Delete this Item',
+                ['class'       => 'btn btn-default']
             )
         );
     }
