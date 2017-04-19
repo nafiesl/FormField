@@ -295,7 +295,7 @@ class FormField
         $form_params['class'] = isset($form_params['class']) ? $form_params['class'] : '';
         $form_params['style'] = isset($form_params['style']) ? $form_params['style'] : 'display:inline';
         if (isset($form_params['onsubmit']) && $form_params['onsubmit'] != false) {
-            $form_params['onsubmit'] = 'return confirm("' . $form_params['onsubmit'] . '")';
+            $form_params['onsubmit'] = 'return confirm("'.$form_params['onsubmit'].'")';
         }
 
         $htmlForm = FormFacade::open($form_params);
