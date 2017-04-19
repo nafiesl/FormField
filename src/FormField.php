@@ -294,8 +294,9 @@ class FormField
         $form_params['method'] = isset($form_params['method']) ? $form_params['method'] : 'post';
         $form_params['class'] = isset($form_params['class']) ? $form_params['class'] : '';
         $form_params['style'] = isset($form_params['style']) ? $form_params['style'] : 'display:inline';
-        if (isset($form_params['onsubmit']) && $form_params['onsubmit'] != false)
+        if (isset($form_params['onsubmit']) && $form_params['onsubmit'] != false) {
             $form_params['onsubmit'] = 'return confirm("' . $form_params['onsubmit'] . '")';
+        }
 
         $htmlForm = FormFacade::open($form_params);
         if (!empty($hiddenFields)) {
@@ -320,10 +321,12 @@ class FormField
         $form_params['method'] = 'delete';
         $form_params['class'] = isset($form_params['class']) ? $form_params['class'] : 'del-form pull-right';
         if (isset($form_params['onsubmit'])) {
-            if ($form_params['onsubmit'] != false)
+            if ($form_params['onsubmit'] != false) {
                 $form_params['onsubmit'] = $form_params['onsubmit'];
-        } else
+            }
+        } else {
             $form_params['onsubmit'] = 'Are you sure to delete this?';
+        }
 
         if (!isset($button_options['title'])) {
             $button_options['title'] = 'Delete this item';
