@@ -1,7 +1,6 @@
 <?php
 
 use Luthfi\FormField\FormField;
-use Luthfi\FormField\FormFieldFacade as FFF;
 use Orchestra\Testbench\TestCase;
 
 class FormButtonAttributesTest extends TestCase
@@ -35,7 +34,7 @@ class FormButtonAttributesTest extends TestCase
         $this->assertEquals(
             $textFieldString,
             $this->formField->formButton(
-                ['url'=> '/','onsubmit' => 'Sure to submit?'],
+                ['url'=> '/', 'onsubmit' => 'Sure to submit?'],
                 'Submit with Button',
                 ['class'       => 'btn btn-default'],
                 ['hidden_field'=> 'hidden_field_value']
@@ -58,7 +57,7 @@ class FormButtonAttributesTest extends TestCase
         $this->assertEquals(
             $textFieldString,
             $this->formField->delete(
-                ['url'=> '/','onsubmit' => 'Sure to delete?'],
+                ['url'=> '/', 'onsubmit' => 'Sure to delete?'],
                 'Delete this Item',
                 ['class'       => 'btn btn-default'],
                 ['hidden_field'=> 'hidden_field_value']
