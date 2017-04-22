@@ -19,6 +19,7 @@ Luthfi\FormField\FormFieldServiceProvider::class,
 // aliases
 'FormField' => Luthfi\FormField\FormFieldFacade::class,
 'Form'      => Collective\Html\FormFacade::class,
+'Html'      => Collective\Html\HtmlFacade::class,
 ```
 
 ## How to use

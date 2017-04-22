@@ -25,6 +25,10 @@ class FormFieldServiceProvider extends ServiceProvider
 
             return $form->setSessionStore($app['session.store']);
         });
+
+        $this->app->singleton('html', function ($app) {
+            return new HtmlBuilder($app['url'], $app['view']);
+        });
     }
 
     public function boot()
