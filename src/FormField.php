@@ -33,8 +33,9 @@ class FormField
 
     public function text($name, $options = [])
     {
-        $hasError = $this->errorBag->has($name) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group '.$hasError.'">';
+        $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
+        $hasError      = $this->errorBag->has($this->formatArrayName($name)) ? 'has-error' : '';
+        $htmlForm      = '<div class="form-group ' . $requiredClass . $hasError . '">';
 
         $value = isset($options['value']) ? $options['value'] : null;
         $type = isset($options['type']) ? $options['type'] : 'text';
@@ -86,7 +87,7 @@ class FormField
             $class = isset($options['info']['class']) ? $options['info']['class'] : 'info';
             $htmlForm .= '<p class="text-'.$class.' small">'.$options['info']['text'].'</p>';
         }
-        $htmlForm .= $this->errorBag->first($name, '<span class="form-error">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
 
         $htmlForm .= '</div>';
 
@@ -119,7 +120,7 @@ class FormField
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
         $htmlForm .= FormFacade::textarea($name, $value, $fieldParams);
-        $htmlForm .= $this->errorBag->first($name, '<span class="form-error">:message</span>');
+        $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
         $htmlForm .= '</div>';
 
         return $htmlForm;
@@ -127,8 +128,9 @@ class FormField
 
     public function select($name, $selectOptions, $options = [])
     {
+        $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group '.$hasError.'">';
+        $htmlForm = '<div class="form-group ' . $requiredClass . $hasError . '">';
 
         $value = isset($options['value']) ? $options['value'] : null;
 
@@ -158,7 +160,7 @@ class FormField
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
         $htmlForm .= FormFacade::select($name, $selectOptions, $value, $fieldParams);
-        $htmlForm .= $this->errorBag->first($name, '<span class="form-error">:message</span>');
+        $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
 
         $htmlForm .= '</div>';
 
@@ -213,7 +215,7 @@ class FormField
             $htmlForm .= '&nbsp;</label></li>';
         }
         $htmlForm .= '</ul>';
-        $htmlForm .= $this->errorBag->first($name, '<span class="form-error">:message</span>');
+        $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
 
         $htmlForm .= '</div>';
 
@@ -244,7 +246,7 @@ class FormField
             $htmlForm .= '&nbsp;</label></li>';
         }
         $htmlForm .= '</ul>';
-        $htmlForm .= $this->errorBag->first($name, '<span class="form-error">:message</span>');
+        $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
         $htmlForm .= '</div>';
 
         return $htmlForm;
@@ -283,7 +285,7 @@ class FormField
         if (isset($options['info'])) {
             $htmlForm .= '<p class="text-'.$options['info']['class'].' small">'.$options['info']['text'].'</p>';
         }
-        $htmlForm .= $this->errorBag->first($name, '<span class="form-error">:message</span>');
+        $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
         $htmlForm .= '</div>';
 
         return $htmlForm;
@@ -361,7 +363,7 @@ class FormField
         $htmlForm .= '</div>';
         $htmlForm .= '<a id="add-service" class="btn btn-info btn-xs pull-right"><i class="fa fa-plus fa-fw"></i></a>';
 
-        $htmlForm .= $this->errorBag->first($name, '<span class="form-error">:message</span>');
+        $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
         $htmlForm .= '</div>';
 
         return $htmlForm;
@@ -391,8 +393,13 @@ class FormField
         }
     }
 
-    public function formatFieldLabel($fieldName)
+    private function formatFieldLabel($fieldName)
     {
         return ucwords(str_replace('_', ' ', $fieldName));
+    }
+
+    private function formatArrayName($name)
+    {
+        return str_replace(['[',']'], ['.', ''], $name);
     }
 }
