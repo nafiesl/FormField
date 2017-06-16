@@ -70,6 +70,21 @@ class FormFieldTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_select_field_with_collection_select_options()
+    {
+        $textFieldString = '<div class="form-group "><label for="key" class="control-label">Key</label>&nbsp;<select class="form-control" id="key" name="key"><option value="" selected="selected">-- Select Key --</option><option value="1">Satu</option><option value="2">Dua</option></select></div>';
+        $this->assertEquals($textFieldString, $this->formField->select('key', collect([1 => 'Satu', 2 => 'Dua'])));
+    }
+
+    /** @test */
+    public function it_returns_select_field_with_placeholder_set_to_false()
+    {
+        $textFieldString = '<div class="form-group "><label for="key" class="control-label">Key</label>&nbsp;<select class="form-control" id="key" name="key"><option value="1">Satu</option><option value="2">Dua</option></select></div>';
+        $this->assertEquals($textFieldString, $this->formField->select('key', [1 => 'Satu', 2 => 'Dua'], ['placeholder' => false]));
+        $this->assertEquals($textFieldString, $this->formField->select('key', collect([1 => 'Satu', 2 => 'Dua']), ['placeholder' => false]));
+    }
+
+    /** @test */
     public function it_returns_multi_select_field()
     {
         $textFieldString = '<div class="form-group "><label for="key" class="control-label">Key</label>&nbsp;<select class="form-control" multiple name="key[]" id="key"><option value="" selected="selected">-- Select Key --</option><option value="1">Satu</option><option value="2">Dua</option></select></div>';

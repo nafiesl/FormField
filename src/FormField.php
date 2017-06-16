@@ -152,11 +152,24 @@ class FormField
             $fieldParams += ['multiple', 'name' => $name.'[]'];
         }
         if (isset($options['placeholder'])) {
-            $placeholder = ['' => $options['placeholder']];
+            if ($options['placeholder'] != false) {
+                $placeholder = ['' => '-- '.$options['placeholder'].' --'];
+            } else {
+                $placeholder = [];
+            }
         } else {
-            $placeholder = ['' => '-- Select '.$this->formatFieldLabel(str_replace('_id', '', $name)).' --'];
+            if (isset($options['label'])) {
+                $placeholder = ['' => '-- Select '.$options['label'].' --'];
+            } else {
+                $placeholder = ['' => '-- Select '.$this->formatFieldLabel($name).' --'];
+            }
         }
-        $selectOptions = $placeholder + $selectOptions;
+
+        if ($selectOptions instanceof Collection) {
+            $selectOptions = !empty($placeholder) ? $selectOptions->prepend($placeholder[''], '') : $selectOptions;
+        } else {
+            $selectOptions = $placeholder + $selectOptions;
+        }
 
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
@@ -396,7 +409,7 @@ class FormField
 
     private function formatFieldLabel($fieldName)
     {
-        return ucwords(str_replace('_', ' ', $fieldName));
+        return ucwords(preg_replace('/(_id$|_)/im', ' ', $fieldName));
     }
 
     private function formatArrayName($name)
