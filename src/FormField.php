@@ -34,8 +34,8 @@ class FormField
     public function text($name, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
-        $hasError      = $this->errorBag->has($this->formatArrayName($name)) ? 'has-error' : '';
-        $htmlForm      = '<div class="form-group ' . $requiredClass . $hasError . '">';
+        $hasError = $this->errorBag->has($this->formatArrayName($name)) ? 'has-error' : '';
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
 
         $value = isset($options['value']) ? $options['value'] : null;
         $type = isset($options['type']) ? $options['type'] : 'text';
@@ -130,7 +130,7 @@ class FormField
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group ' . $requiredClass . $hasError . '">';
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
 
         $value = isset($options['value']) ? $options['value'] : null;
 
@@ -152,10 +152,11 @@ class FormField
             $fieldParams += ['multiple', 'name' => $name.'[]'];
         }
         if (isset($options['placeholder'])) {
-            $fieldParams += ['placeholder' => $options['placeholder']];
+            $placeholder = ['' => $options['placeholder']];
         } else {
-            $fieldParams += ['placeholder' => '-- Pilih '.$this->formatFieldLabel(str_replace('_id', '', $name)).' --'];
+            $placeholder = ['' => '-- Select '.$this->formatFieldLabel(str_replace('_id', '', $name)).' --'];
         }
+        $selectOptions = $placeholder + $selectOptions;
 
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
@@ -400,6 +401,6 @@ class FormField
 
     private function formatArrayName($name)
     {
-        return str_replace(['[',']'], ['.', ''], $name);
+        return str_replace(['[', ']'], ['.', ''], $name);
     }
 }
