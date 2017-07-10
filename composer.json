@@ -15,10 +15,23 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "illuminate/support": "5.3.* || 5.4.*",
-        "laravelcollective/html": "5.3.* || 5.4.*"
+        "php": ">=7.0",
+        "illuminate/support": "5.5.x-dev",
+        "laravelcollective/html": "dev-master"
     },
     "require-dev": {
         "orchestra/testbench": "~3.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Luthfi\\FormField\\FormFieldServiceProvider"
+            ],
+            "aliases": {
+                "FormField": "Luthfi\\FormField\\FormFieldFacade",
+                "Form": "Collective\\Html\\FormFacade",
+                "Html": "Collective\\Html\\HtmlFacade"
+            }
+        }
     }
 }
