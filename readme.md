@@ -5,7 +5,10 @@
 This is form fields wrapper for laravel 5.3 and 5.4 with bootstrap 3
 
 ## How to install
+
 Install this package through [Composer](https://getcomposer.org). Run following from terminal:
+
+#### For laravel 5.3 and 5.4
 
 ```
 composer require luthfi/formfield
@@ -21,6 +24,13 @@ Luthfi\FormField\FormFieldServiceProvider::class,
 'Form'      => Collective\Html\FormFacade::class,
 'Html'      => Collective\Html\HtmlFacade::class,
 ```
+
+#### For laravel 5.5
+
+```
+composer require luthfi/formfield dev-master
+```
+> this package will auto discovered
 
 ## How to use
 
