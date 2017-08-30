@@ -2,7 +2,7 @@
 [![StyleCI](https://styleci.io/repos/79648139/shield?branch=master)](https://styleci.io/repos/79648139)
 [![Build Status](https://travis-ci.org/nafiesl/FormField.svg?branch=master)](https://travis-ci.org/nafiesl/FormField)
 
-This is form fields wrapper for laravel 5.3 and 5.4 with bootstrap 3
+This is form fields wrapper for laravel 5.3 and 5.4 with bootstrap 3. This package is the extension of Laravelcollective Form for Laravel 5.3, 5.4 and 5.5 with Twitter Bootstrap 3.
 
 ## How to install
 
