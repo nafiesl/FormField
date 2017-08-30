@@ -16,7 +16,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.0",
-        "laravelcollective/html": "dev-master"
+        "laravelcollective/html": "5.5.*"
     },
     "require-dev": {
         "orchestra/testbench": "~3.0"
