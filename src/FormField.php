@@ -246,7 +246,14 @@ class FormField
         $listStyle = isset($options['list_style']) ? $options['list_style'] : 'inline';
         $htmlForm .= '<ul class="checkbox list-'.$listStyle.'">';
 
-        $value = isset($options['value']) ? $options['value'] : new Collection();
+        if (isset($options['value'])) {
+            $value = $options['value'];
+            if (is_array($options['value'])) {
+                $value = new Collection($options['value']);
+            }
+        } else {
+            $value = new Collection();
+        }
 
         foreach ($checkboxOptions as $key => $option) {
             $fieldParams = ['id' => $name.'_'.$key];

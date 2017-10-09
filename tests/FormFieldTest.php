@@ -1,26 +1,11 @@
 <?php
 
-use Luthfi\FormField\FormField;
+namespace Tests;
+
 use Luthfi\FormField\FormFieldFacade as FFF;
-use Orchestra\Testbench\TestCase;
 
 class FormFieldTest extends TestCase
 {
-    private $formField;
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->formField = new FormField();
-    }
-
-    protected function getPackageProviders($app)
-    {
-        return [
-            Luthfi\FormField\FormFieldServiceProvider::class,
-        ];
-    }
-
     /** @test */
     public function it_has_facade_accessor()
     {

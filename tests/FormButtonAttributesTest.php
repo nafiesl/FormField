@@ -1,25 +1,9 @@
 <?php
 
-use Luthfi\FormField\FormField;
-use Orchestra\Testbench\TestCase;
+namespace Tests;
 
 class FormButtonAttributesTest extends TestCase
 {
-    private $formField;
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->formField = new FormField();
-    }
-
-    protected function getPackageProviders($app)
-    {
-        return [
-            Luthfi\FormField\FormFieldServiceProvider::class,
-        ];
-    }
-
     /** @test */
     public function form_button_can_have_onsubmit_property()
     {

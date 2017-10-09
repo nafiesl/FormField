@@ -13,10 +13,15 @@
             "Luthfi\\FormField\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.0",
-        "laravelcollective/html": "5.5.*"
+        "laravelcollective/html": "5.3.* || 5.4.* || 5.5.*"
     },
     "require-dev": {
         "orchestra/testbench": "~3.0"
