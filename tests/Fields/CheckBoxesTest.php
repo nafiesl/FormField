@@ -7,49 +7,59 @@ use Tests\TestCase;
 class CheckBoxesTest extends TestCase
 {
     /** @test */
-    public function it_returns_checkboxes_field()
+    public function it_returns_default_checkboxes_field()
     {
-        $textFieldString = '<div class="form-group ">';
-        $textFieldString .= '<label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;';
-        $textFieldString .= '<ul class="checkbox list-inline">';
-        $textFieldString .= '<li><label for="checkboxes_1"><input id="checkboxes_1" name="checkboxes[]" type="checkbox" value="1">Satu&nbsp;</label></li>';
-        $textFieldString .= '<li><label for="checkboxes_2"><input id="checkboxes_2" name="checkboxes[]" type="checkbox" value="2">Dua&nbsp;</label></li>';
-        $textFieldString .= '</ul>';
-        $textFieldString .= '</div>';
-        $this->assertEquals($textFieldString, $this->formField->checkboxes('checkboxes', [1 => 'Satu', 2 => 'Dua']));
+        $generatedString = '<div class="form-group ">';
+        $generatedString .= '<label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;';
+        $generatedString .= '<ul class="checkbox list-inline">';
+        $generatedString .= '<li><label for="checkboxes_1"><input id="checkboxes_1" name="checkboxes[]" type="checkbox" value="1">Satu&nbsp;</label></li>';
+        $generatedString .= '<li><label for="checkboxes_2"><input id="checkboxes_2" name="checkboxes[]" type="checkbox" value="2">Dua&nbsp;</label></li>';
+        $generatedString .= '</ul>';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->checkboxes('checkboxes', [1 => 'Satu', 2 => 'Dua'])
+        );
     }
 
     /** @test */
     public function it_returns_checkboxes_field_with_checked_value_collection()
     {
-        $textFieldString = '<div class="form-group ">';
-        $textFieldString .= '<label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;';
-        $textFieldString .= '<ul class="checkbox list-inline">';
-        $textFieldString .= '<li><label for="checkboxes_1"><input id="checkboxes_1" checked="checked" name="checkboxes[]" type="checkbox" value="1">Satu&nbsp;</label></li>';
-        $textFieldString .= '<li><label for="checkboxes_2"><input id="checkboxes_2" name="checkboxes[]" type="checkbox" value="2">Dua&nbsp;</label></li>';
-        $textFieldString .= '</ul>';
-        $textFieldString .= '</div>';
+        $generatedString = '<div class="form-group ">';
+        $generatedString .= '<label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;';
+        $generatedString .= '<ul class="checkbox list-inline">';
+        $generatedString .= '<li><label for="checkboxes_1"><input id="checkboxes_1" checked="checked" name="checkboxes[]" type="checkbox" value="1">Satu&nbsp;</label></li>';
+        $generatedString .= '<li><label for="checkboxes_2"><input id="checkboxes_2" name="checkboxes[]" type="checkbox" value="2">Dua&nbsp;</label></li>';
+        $generatedString .= '</ul>';
+        $generatedString .= '</div>';
 
         // Checked option key : 1, formated in Laravel collection
         $options = ['value' => collect([1])];
 
-        $this->assertEquals($textFieldString, $this->formField->checkboxes('checkboxes', [1 => 'Satu', 2 => 'Dua'], $options));
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->checkboxes('checkboxes', [1 => 'Satu', 2 => 'Dua'], $options)
+        );
     }
 
     /** @test */
     public function it_returns_checkboxes_field_with_checked_value_array()
     {
-        $textFieldString = '<div class="form-group ">';
-        $textFieldString .= '<label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;';
-        $textFieldString .= '<ul class="checkbox list-inline">';
-        $textFieldString .= '<li><label for="checkboxes_1"><input id="checkboxes_1" checked="checked" name="checkboxes[]" type="checkbox" value="1">Satu&nbsp;</label></li>';
-        $textFieldString .= '<li><label for="checkboxes_2"><input id="checkboxes_2" name="checkboxes[]" type="checkbox" value="2">Dua&nbsp;</label></li>';
-        $textFieldString .= '</ul>';
-        $textFieldString .= '</div>';
+        $generatedString = '<div class="form-group ">';
+        $generatedString .= '<label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;';
+        $generatedString .= '<ul class="checkbox list-inline">';
+        $generatedString .= '<li><label for="checkboxes_1"><input id="checkboxes_1" checked="checked" name="checkboxes[]" type="checkbox" value="1">Satu&nbsp;</label></li>';
+        $generatedString .= '<li><label for="checkboxes_2"><input id="checkboxes_2" checked="checked" name="checkboxes[]" type="checkbox" value="2">Dua&nbsp;</label></li>';
+        $generatedString .= '</ul>';
+        $generatedString .= '</div>';
 
-        // Checked option key : 1, formated in array
-        $options = ['value' => [1]];
+        // Checked option key : 1 and 2, formated in array
+        $options = ['value' => [1, 2]];
 
-        $this->assertEquals($textFieldString, $this->formField->checkboxes('checkboxes', [1 => 'Satu', 2 => 'Dua'], $options));
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->checkboxes('checkboxes', [1 => 'Satu', 2 => 'Dua'], $options)
+        );
     }
 }
