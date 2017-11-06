@@ -17,7 +17,7 @@ class FormButtonAttributesTest extends TestCase
         $this->assertEquals(
             $generatedString,
             $this->formField->formButton(
-                ['url'=> '/'],
+                ['url' => '/'],
                 'Submit with Button'
             )
         );
@@ -36,9 +36,9 @@ class FormButtonAttributesTest extends TestCase
         $this->assertEquals(
             $generatedString,
             $this->formField->formButton(
-                ['url'=> '/'],
+                ['url' => '/'],
                 'Submit with Button',
-                ['class'        => 'btn btn-default']
+                ['class' => 'btn btn-default']
             )
         );
     }
@@ -58,7 +58,7 @@ class FormButtonAttributesTest extends TestCase
         $this->assertEquals(
             $generatedString,
             $this->formField->formButton(
-                ['url'=> '/', 'onsubmit' => 'Sure to submit?'],
+                ['url' => '/', 'onsubmit' => 'Sure to submit?'],
                 'Submit with Button',
                 ['class'        => 'btn btn-default'],
                 ['hidden_field' => 'hidden_field_value']
@@ -81,7 +81,7 @@ class FormButtonAttributesTest extends TestCase
         $this->assertEquals(
             $generatedString,
             $this->formField->delete(
-                ['url'=> '/'],
+                ['url' => '/'],
                 'Delete this Item',
                 ['class' => 'btn btn-default']
             )
@@ -104,10 +104,10 @@ class FormButtonAttributesTest extends TestCase
         $this->assertEquals(
             $generatedString,
             $this->formField->delete(
-                ['url'=> '/'],
+                ['url' => '/'],
                 'Delete this Item',
-                ['class'       => 'btn btn-default'],
-                ['hidden_field'=> 'hidden_field_value']
+                ['class'        => 'btn btn-default'],
+                ['hidden_field' => 'hidden_field_value']
             )
         );
     }
@@ -128,10 +128,10 @@ class FormButtonAttributesTest extends TestCase
         $this->assertEquals(
             $generatedString,
             $this->formField->delete(
-                ['url'=> '/', 'onsubmit' => 'Sure to delete?'],
+                ['url' => '/', 'onsubmit' => 'Sure to delete?'],
                 'Delete this Item',
-                ['class'       => 'btn btn-default'],
-                ['hidden_field'=> 'hidden_field_value']
+                ['class'        => 'btn btn-default'],
+                ['hidden_field' => 'hidden_field_value']
             )
         );
     }

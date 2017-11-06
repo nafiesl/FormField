@@ -171,7 +171,7 @@ class TextFieldTest extends TestCase
     public function it_shows_text_field_with_validation_error()
     {
         // Mock error message on "key" attribute.
-        $errorBag = new \Illuminate\Support\MessageBag;
+        $errorBag = new \Illuminate\Support\MessageBag();
         $errorBag->add('key', 'The key field is required.');
 
         $this->formField->errorBag = $errorBag;
