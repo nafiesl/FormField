@@ -50,6 +50,10 @@ class FormField
         $value = isset($options['value']) ? $options['value'] : null;
         $fieldAttributes = $this->getFieldAttributes($options);
 
+        if (isset($options['placeholder'])) {
+            $fieldAttributes += ['placeholder' => $options['placeholder']];
+        }
+
         $htmlForm .= FormFacade::input($type, $name, $value, $fieldAttributes);
 
         if (isset($options['addon']['after'])) {
@@ -77,6 +81,10 @@ class FormField
 
         $fieldAttributes = $this->getFieldAttributes($options);
 
+        if (isset($options['placeholder'])) {
+            $fieldAttributes += ['placeholder' => $options['placeholder']];
+        }
+
         $rows = isset($options['rows']) ? $options['rows'] : 3;
         $value = isset($options['value']) ? $options['value'] : null;
         $fieldAttributes += ['rows' => $rows];
@@ -102,25 +110,6 @@ class FormField
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
         $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
 
-        $value = isset($options['value']) ? $options['value'] : null;
-
-        $fieldParams = ['class' => 'form-control'];
-        if (isset($options['class'])) {
-            $fieldParams['class'] .= ' '.$options['class'];
-        }
-
-        if (isset($options['readonly']) && $options['readonly'] == true) {
-            $fieldParams += ['readonly'];
-        }
-        if (isset($options['disabled']) && $options['disabled'] == true) {
-            $fieldParams += ['disabled'];
-        }
-        if (isset($options['required']) && $options['required'] == true) {
-            $fieldParams += ['required'];
-        }
-        if (isset($options['multiple']) && $options['multiple'] == true) {
-            $fieldParams += ['multiple', 'name' => $name.'[]'];
-        }
         if (isset($options['placeholder'])) {
             if ($options['placeholder'] != false) {
                 $placeholder = ['' => '-- '.$options['placeholder'].' --'];
@@ -135,6 +124,14 @@ class FormField
             }
         }
 
+        $value = isset($options['value']) ? $options['value'] : null;
+
+        $fieldAttributes = $this->getFieldAttributes($options);
+
+        if (isset($options['multiple']) && $options['multiple'] == true) {
+            $fieldAttributes += ['multiple', 'name' => $name.'[]'];
+        }
+
         if ($selectOptions instanceof Collection) {
             $selectOptions = !empty($placeholder) ? $selectOptions->prepend($placeholder[''], '') : $selectOptions;
         } else {
@@ -143,7 +140,7 @@ class FormField
 
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
-        $htmlForm .= FormFacade::select($name, $selectOptions, $value, $fieldParams);
+        $htmlForm .= FormFacade::select($name, $selectOptions, $value, $fieldAttributes);
         $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
 
         $htmlForm .= '</div>';
@@ -415,9 +412,6 @@ class FormField
         }
         if (isset($options['min'])) {
             $fieldAttributes += ['min' => $options['min']];
-        }
-        if (isset($options['placeholder'])) {
-            $fieldAttributes += ['placeholder' => $options['placeholder']];
         }
         if (isset($options['style'])) {
             $fieldAttributes += ['style' => $options['style']];
