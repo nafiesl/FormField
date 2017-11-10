@@ -37,14 +37,6 @@ class FormField
         $hasError = $this->errorBag->has($this->formatArrayName($name)) ? 'has-error' : '';
         $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
 
-        $value = isset($options['value']) ? $options['value'] : null;
-        $type = isset($options['type']) ? $options['type'] : 'text';
-
-        $fieldParams = ['class' => 'form-control'];
-        if (isset($options['class'])) {
-            $fieldParams['class'] .= ' '.$options['class'];
-        }
-
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
         if (isset($options['addon'])) {
@@ -53,29 +45,12 @@ class FormField
         if (isset($options['addon']['before'])) {
             $htmlForm .= '<span class="input-group-addon">'.$options['addon']['before'].'</span>';
         }
-        if (isset($options['readonly']) && $options['readonly'] == true) {
-            $fieldParams += ['readonly'];
-        }
-        if (isset($options['disabled']) && $options['disabled'] == true) {
-            $fieldParams += ['disabled'];
-        }
-        if (isset($options['required']) && $options['required'] == true) {
-            $fieldParams += ['required'];
-        }
-        if (isset($options['min'])) {
-            $fieldParams += ['min' => $options['min']];
-        }
-        if (isset($options['placeholder'])) {
-            $fieldParams += ['placeholder' => $options['placeholder']];
-        }
-        if (isset($options['style'])) {
-            $fieldParams += ['style' => $options['style']];
-        }
-        if (isset($options['id'])) {
-            $fieldParams += ['id' => $options['id']];
-        }
 
-        $htmlForm .= FormFacade::input($type, $name, $value, $fieldParams);
+        $type = isset($options['type']) ? $options['type'] : 'text';
+        $value = isset($options['value']) ? $options['value'] : null;
+        $fieldAttributes = $this->getFieldAttributes($options);
+
+        $htmlForm .= FormFacade::input($type, $name, $value, $fieldAttributes);
 
         if (isset($options['addon']['after'])) {
             $htmlForm .= '<span class="input-group-addon">'.$options['addon']['after'].'</span>';
@@ -92,6 +67,38 @@ class FormField
         $htmlForm .= '</div>';
 
         return $htmlForm;
+    }
+
+    private function getFieldAttributes(array $options)
+    {
+        $fieldAttributes = ['class' => 'form-control'];
+
+        if (isset($options['class'])) {
+            $fieldAttributes['class'] .= ' '.$options['class'];
+        }
+        if (isset($options['id'])) {
+            $fieldAttributes += ['id' => $options['id']];
+        }
+        if (isset($options['readonly']) && $options['readonly'] == true) {
+            $fieldAttributes += ['readonly'];
+        }
+        if (isset($options['disabled']) && $options['disabled'] == true) {
+            $fieldAttributes += ['disabled'];
+        }
+        if (isset($options['required']) && $options['required'] == true) {
+            $fieldAttributes += ['required'];
+        }
+        if (isset($options['min'])) {
+            $fieldAttributes += ['min' => $options['min']];
+        }
+        if (isset($options['placeholder'])) {
+            $fieldAttributes += ['placeholder' => $options['placeholder']];
+        }
+        if (isset($options['style'])) {
+            $fieldAttributes += ['style' => $options['style']];
+        }
+
+        return $fieldAttributes;
     }
 
     public function textarea($name, $options = [])

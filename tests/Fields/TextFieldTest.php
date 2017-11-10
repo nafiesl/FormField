@@ -21,6 +21,20 @@ class TextFieldTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_text_field_with_class_attribute()
+    {
+        $generatedString = '<div class="form-group ">';
+        $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
+        $generatedString .= '<input class="form-control testing-class" name="key" type="text" id="key">';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->text('key', ['class' => 'testing-class'])
+        );
+    }
+
+    /** @test */
     public function it_returns_text_field_with_disabled_attribute()
     {
         $generatedString = '<div class="form-group ">';

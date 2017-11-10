@@ -17,8 +17,7 @@ class FormFieldServiceProvider extends ServiceProvider
 
         $this->app->singleton('form', function ($app) {
             $form = new FormBuilder(
-                new HtmlBuilder($app['url'],
-                $app['view']),
+                new HtmlBuilder($app['url'], $app['view']),
                 $app['url'], $app['view'],
                 $app['session.store']->token()
             );
