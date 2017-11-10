@@ -248,20 +248,6 @@ class TextFieldTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_textarea_field()
-    {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
-        $generatedString .= '<textarea class="form-control" rows="3" name="key" cols="50" id="key"></textarea>';
-        $generatedString .= '</div>';
-
-        $this->assertEquals(
-            $generatedString,
-            $this->formField->textarea('key')
-        );
-    }
-
-    /** @test */
     public function it_returns_plain_text_field_with_view_template()
     {
         $generatedString = '<div class="form-group ">';
