@@ -145,6 +145,13 @@ class TextareaFieldTest extends TestCase
             $generatedString,
             $this->formField->textarea('key', ['info' => ['text' => 'Field text info.']])
         );
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->textarea('key', [
+                'info' => ['text' => 'Field text info.', 'class' => 'info'],
+            ])
+        );
     }
 
     /** @test */

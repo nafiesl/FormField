@@ -8,6 +8,7 @@ class SelectFieldTest extends TestCase
 {
     protected $selectOptions = [1 => 'Satu', 2 => 'Dua'];
     protected $selectOptionsString = '<option value="1">Satu</option><option value="2">Dua</option>';
+
     /** @test */
     public function it_returns_select_field_with_array_of_select_options()
     {
@@ -124,6 +125,26 @@ class SelectFieldTest extends TestCase
         $this->assertEquals(
             $generatedString,
             $this->formField->select('key', $this->selectOptions, ['value' => 2])
+        );
+    }
+
+    /** @test */
+    public function it_returns_select_field_with_info_text_line()
+    {
+        $generatedString = '<div class="form-group ">';
+        $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
+        $generatedString .= '<select class="form-control" id="key" name="key">';
+        $generatedString .= '<option value="" selected="selected">-- Select Key --</option>';
+        $generatedString .= $this->selectOptionsString;
+        $generatedString .= '</select>';
+        $generatedString .= '<p class="text-info small">Field text info.</p>';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->select('key', $this->selectOptions, [
+                'info' => ['text' => 'Field text info.'],
+            ])
         );
     }
 }

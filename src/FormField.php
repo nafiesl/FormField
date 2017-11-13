@@ -62,10 +62,9 @@ class FormField
         if (isset($options['addon'])) {
             $htmlForm .= '</div>';
         }
-        if (isset($options['info'])) {
-            $class = isset($options['info']['class']) ? $options['info']['class'] : 'info';
-            $htmlForm .= '<p class="text-'.$class.' small">'.$options['info']['text'].'</p>';
-        }
+
+        $htmlForm .= $this->getInfoTextLine($options);
+
         $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
 
         $htmlForm .= '</div>';
@@ -93,10 +92,7 @@ class FormField
 
         $htmlForm .= FormFacade::textarea($name, $value, $fieldAttributes);
 
-        if (isset($options['info'])) {
-            $class = isset($options['info']['class']) ? $options['info']['class'] : 'info';
-            $htmlForm .= '<p class="text-'.$class.' small">'.$options['info']['text'].'</p>';
-        }
+        $htmlForm .= $this->getInfoTextLine($options);
 
         $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
         $htmlForm .= '</div>';
@@ -141,6 +137,9 @@ class FormField
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
         $htmlForm .= FormFacade::select($name, $selectOptions, $value, $fieldAttributes);
+
+        $htmlForm .= $this->getInfoTextLine($options);
+
         $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
 
         $htmlForm .= '</div>';
@@ -196,6 +195,9 @@ class FormField
             $htmlForm .= '&nbsp;</label></li>';
         }
         $htmlForm .= '</ul>';
+
+        $htmlForm .= $this->getInfoTextLine($options);
+
         $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
 
         $htmlForm .= '</div>';
@@ -234,6 +236,9 @@ class FormField
             $htmlForm .= '&nbsp;</label></li>';
         }
         $htmlForm .= '</ul>';
+
+        $htmlForm .= $this->getInfoTextLine($options);
+
         $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
         $htmlForm .= '</div>';
 
@@ -398,5 +403,17 @@ class FormField
         }
 
         return $fieldAttributes;
+    }
+
+    private function getInfoTextLine($options)
+    {
+        $htmlForm = '';
+
+        if (isset($options['info'])) {
+            $class = isset($options['info']['class']) ? $options['info']['class'] : 'info';
+            $htmlForm .= '<p class="text-'.$class.' small">'.$options['info']['text'].'</p>';
+        }
+
+        return $htmlForm;
     }
 }
