@@ -254,29 +254,9 @@ class FormField
 
     public function file($name, $options = [])
     {
-        $hasError = $this->errorBag->has($name) ? 'has-error' : '';
-        $label = isset($options['label']) ? $options['label'] : $this->formatFieldLabel($name);
+        $options['type'] = 'file';
 
-        $htmlForm = '<div class="form-group '.$hasError.'">';
-        $htmlForm .= $this->setFormFieldLabel($name, $options);
-
-        $fieldParams = ['class' => 'form-control'];
-        if (isset($options['class'])) {
-            $fieldParams['class'] .= ' '.$options['class'];
-        }
-        if (isset($options['multiple']) && $options['multiple'] == true) {
-            $name = $name.'[]';
-            $fieldParams += ['multiple' => true];
-        }
-
-        $htmlForm .= FormFacade::file($name, $fieldParams);
-        if (isset($options['info'])) {
-            $htmlForm .= '<p class="text-'.$options['info']['class'].' small">'.$options['info']['text'].'</p>';
-        }
-        $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
-        $htmlForm .= '</div>';
-
-        return $htmlForm;
+        return $this->text($name, $options);
     }
 
     public function formButton($form_params = [], $button_label = 'x', $button_options = [], $hiddenFields = [])

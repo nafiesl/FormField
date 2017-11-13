@@ -33,4 +33,42 @@ class OtherFieldTest extends TestCase
             $this->formField->file('file_name')
         );
     }
+
+    /** @test */
+    public function it_returns_file_upload_field_with_required_attribute()
+    {
+        $generatedString = '<div class="form-group required ">';
+        $generatedString .= '<label for="file_name" class="control-label">File Name</label>&nbsp;';
+        $generatedString .= '<input class="form-control" required name="file_name" type="file" id="file_name">';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->file('file_name', ['required' => true])
+        );
+    }
+
+    /** @test */
+    public function it_returns_file_upload_field_with_info_text_line()
+    {
+        $generatedString = '<div class="form-group ">';
+        $generatedString .= '<label for="file_name" class="control-label">File Name</label>&nbsp;';
+        $generatedString .= '<input class="form-control" name="file_name" type="file" id="file_name">';
+        $generatedString .= '<p class="text-info small">Field text info.</p>';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->file('file_name', [
+                'info' => ['text' => 'Field text info.', 'class' => 'info'],
+            ])
+        );
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->file('file_name', [
+                'info' => ['text' => 'Field text info.'],
+            ])
+        );
+    }
 }
