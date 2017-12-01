@@ -94,7 +94,7 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
         $htmlForm .= '</div>';
 
         return $htmlForm;
@@ -140,7 +140,7 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
 
         $htmlForm .= '</div>';
 
@@ -198,7 +198,7 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
 
         $htmlForm .= '</div>';
 
@@ -239,7 +239,7 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($name, '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
         $htmlForm .= '</div>';
 
         return $htmlForm;

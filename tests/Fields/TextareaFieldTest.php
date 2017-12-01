@@ -174,4 +174,25 @@ class TextareaFieldTest extends TestCase
             $this->formField->textarea('key')
         );
     }
+
+    /** @test */
+    public function it_shows_textarea_field_with_array_name_that_has_correct_validation_error()
+    {
+        // Mock error message on "key" attribute.
+        $errorBag = new \Illuminate\Support\MessageBag();
+        $errorBag->add('key.0', 'The key field is required.');
+
+        $this->formField->errorBag = $errorBag;
+
+        $generatedString = '<div class="form-group has-error">';
+        $generatedString .= '<label for="key[0]" class="control-label">Key[0]</label>&nbsp;';
+        $generatedString .= '<textarea class="form-control" rows="3" name="key[0]" cols="50" id="key[0]"></textarea>';
+        $generatedString .= '<span class="help-block small">The key field is required.</span>';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->textarea('key[0]')
+        );
+    }
 }

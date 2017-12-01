@@ -203,6 +203,27 @@ class TextFieldTest extends TestCase
     }
 
     /** @test */
+    public function it_shows_text_field_with_array_name_that_has_correct_validation_error()
+    {
+        // Mock error message on "key" attribute.
+        $errorBag = new \Illuminate\Support\MessageBag();
+        $errorBag->add('key.0', 'The key field is required.');
+
+        $this->formField->errorBag = $errorBag;
+
+        $generatedString = '<div class="form-group has-error">';
+        $generatedString .= '<label for="key[0]" class="control-label">Key[0]</label>&nbsp;';
+        $generatedString .= '<input class="form-control" name="key[0]" type="text" id="key[0]">';
+        $generatedString .= '<span class="help-block small">The key field is required.</span>';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->text('key[0]')
+        );
+    }
+
+    /** @test */
     public function it_returns_price_field()
     {
         $generatedString = '<div class="form-group ">';
