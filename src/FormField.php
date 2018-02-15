@@ -168,11 +168,12 @@ class FormField
         return $this->text($name, $options);
     }
 
-    public function radios($name, array $radioOptions, $options = [])
+    public function radios($name, $radioOptions, $options = [])
     {
+        $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
 
-        $htmlForm = '<div class="form-group '.$hasError.'">';
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
         $listStyle = isset($options['list_style']) ? $options['list_style'] : 'inline';
@@ -187,6 +188,9 @@ class FormField
             }
             if (isset($options['v-model'])) {
                 $fieldParams += ['v-model' => $options['v-model']];
+            }
+            if (isset($options['required']) && $options['required'] == true) {
+                $fieldParams += ['required' => true];
             }
 
             $htmlForm .= '<li><label for="'.$name.'_'.$key.'">';
@@ -207,9 +211,10 @@ class FormField
 
     public function checkboxes($name, array $checkboxOptions, $options = [])
     {
+        $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group '.$hasError.'">';
 
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
         $listStyle = isset($options['list_style']) ? $options['list_style'] : 'inline';
