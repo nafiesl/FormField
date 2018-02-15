@@ -96,11 +96,7 @@ class CheckBoxesTest extends TestCase
 
         $this->assertEquals(
             $generatedString,
-            $this->formField->checkboxes(
-                'checkboxes',
-                [1 => 'Satu', 2 => 'Dua'],
-                ['required' => true]
-            )
+            $this->formField->checkboxes('checkboxes', [1 => 'Satu', 2 => 'Dua'], ['required' => true])
         );
     }
 }
