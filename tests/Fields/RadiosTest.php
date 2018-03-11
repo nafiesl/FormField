@@ -95,4 +95,28 @@ class RadiosTest extends TestCase
             ])
         );
     }
+
+    /** @test */
+    public function it_shows_radio_with_validation_error()
+    {
+        // Mock error message on "radios" attribute.
+        $errorBag = new \Illuminate\Support\MessageBag();
+        $errorBag->add('radios', 'The radios field is required.');
+
+        $this->formField->errorBag = $errorBag;
+
+        $generatedString = '<div class="form-group has-error">';
+        $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;';
+        $generatedString .= '<ul class="radio list-inline">';
+        $generatedString .= '<li><label for="radios_1"><input id="radios_1" name="radios" type="radio" value="1">Satu&nbsp;</label></li>';
+        $generatedString .= '<li><label for="radios_2"><input id="radios_2" name="radios" type="radio" value="2">Dua&nbsp;</label></li>';
+        $generatedString .= '</ul>';
+        $generatedString .= '<span class="help-block small">The radios field is required.</span>';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->radios('radios', [1 => 'Satu', 2 => 'Dua'])
+        );
+    }
 }
