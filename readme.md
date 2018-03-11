@@ -1,6 +1,7 @@
 # Laravel Boostrap Form Field
 [![StyleCI](https://styleci.io/repos/79648139/shield?branch=master)](https://styleci.io/repos/79648139)
 [![Build Status](https://travis-ci.org/nafiesl/FormField.svg?branch=master)](https://travis-ci.org/nafiesl/FormField)
+[![Total Downloads](https://poser.pugx.org/luthfi/formfield/downloads)](https://packagist.org/packages/luthfi/formfield)
 
 This package is the extension of Laravelcollective Form for Laravel 5.3, 5.4 and 5.5 with Twitter Bootstrap 3 form fields wrapper.
 
