@@ -21,16 +21,36 @@ class FormField
         $this->errorBag = Session::get('errors', new MessageBag());
     }
 
+    /**
+     * Form opening tag with form atributes.
+     *
+     * @param  array  $options The form attributes.
+     *
+     * @return string          The form opening tag.
+     */
     public function open($options = [])
     {
         return FormFacade::open($options);
     }
 
+    /**
+     * Form closing tag.
+     *
+     * @return string The form closing tag.
+     */
     public function close()
     {
         return FormFacade::close();
     }
 
+    /**
+     * Text input field that wrapped with form-group bootstrap div.
+     *
+     * @param  string $name    The text field name and id attribute.
+     * @param  array  $options Additional attribute for the text input.
+     *
+     * @return string          Generated text input form field.
+     */
     public function text($name, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
@@ -72,6 +92,14 @@ class FormField
         return $htmlForm;
     }
 
+    /**
+     * Textarea input field that wrapped with form-group bootstrap div.
+     *
+     * @param  string $name    The textarea field name and id attribute.
+     * @param  array  $options Additional attribute for the textarea input.
+     *
+     * @return string          Generated textarea input form field.
+     */
     public function textarea($name, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
@@ -100,6 +128,15 @@ class FormField
         return $htmlForm;
     }
 
+    /**
+     * Select/dropdown field wrapped with form-group bootstrap div.
+     *
+     * @param  [type]           $name          Select field name.
+     * @param  array|Collection $selectOptions Select options.
+     * @param  array            $options       Select input attributes.
+     *
+     * @return string                          Generated select input form field.
+     */
     public function select($name, $selectOptions, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
@@ -147,6 +184,15 @@ class FormField
         return $htmlForm;
     }
 
+    /**
+     * Multi-select/dropdown field wrapped with form-group bootstrap div.
+     *
+     * @param  [type]           $name          Select field name which will become array input.
+     * @param  array|Collection $selectOptions Select options.
+     * @param  array            $options       Select input attributes.
+     *
+     * @return string                Generated multi-select input form field.
+     */
     public function multiSelect($name, $selectOptions, $options = [])
     {
         $options['multiple'] = true;
@@ -154,6 +200,14 @@ class FormField
         return $this->select($name, $selectOptions, $options);
     }
 
+    /**
+     * Email input field that wrapped with form-group bootstrap div.
+     *
+     * @param  string $name    The email field name and id attribute.
+     * @param  array  $options Additional attribute for the email input.
+     *
+     * @return string          Generated email input form field.
+     */
     public function email($name, $options = [])
     {
         $options['type'] = 'email';
@@ -161,6 +215,14 @@ class FormField
         return $this->text($name, $options);
     }
 
+    /**
+     * Password input field that wrapped with form-group bootstrap div.
+     *
+     * @param  string $name    The password field name and id attribute.
+     * @param  array  $options Additional attribute for the password input.
+     *
+     * @return string          Generated password input form field.
+     */
     public function password($name, $options = [])
     {
         $options['type'] = 'password';
@@ -168,6 +230,15 @@ class FormField
         return $this->text($name, $options);
     }
 
+    /**
+     * Radio field wrapped with form-group bootstrap div.
+     *
+     * @param  [type]           $name         Radio field name.
+     * @param  array|Collection $radioOptions Radio options.
+     * @param  array            $options      Radio input attributes.
+     *
+     * @return string                         Generated radio input form field.
+     */
     public function radios($name, $radioOptions, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
@@ -209,6 +280,15 @@ class FormField
         return $htmlForm;
     }
 
+    /**
+     * Multi checkbox with array input, wrapped with bootstrap form-group div.
+     *
+     * @param  string $name            Name of checkbox field which become an array input.
+     * @param  array  $checkboxOptions Checkbox options.
+     * @param  array  $options         Checkbox input attributes.
+     *
+     * @return string                  Generated multi-checkboxes input.
+     */
     public function checkboxes($name, array $checkboxOptions, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
@@ -250,6 +330,15 @@ class FormField
         return $htmlForm;
     }
 
+    /**
+     * Display a text on the form as disabled input.
+     *
+     * @param  string $name    The disabled text field name.
+     * @param  string $value   The field value (displayed text).
+     * @param  array  $options The attributes for the disabled text field.
+     *
+     * @return string          Generated disabled text field.
+     */
     public function textDisplay($name, $value, $options = [])
     {
         $label = isset($options['label']) ? $options['label'] : $this->formatFieldLabel($name);
@@ -262,6 +351,14 @@ class FormField
         return $htmlForm;
     }
 
+    /**
+     * File input field that wrapped with form-group bootstrap div.
+     *
+     * @param  string $name    The file field name and id attribute.
+     * @param  array  $options Additional attribute for the file input.
+     *
+     * @return string          Generated file input form field.
+     */
     public function file($name, $options = [])
     {
         $options['type'] = 'file';
@@ -269,6 +366,18 @@ class FormField
         return $this->text($name, $options);
     }
 
+    /**
+     * One form which only have "one button" and "hidden fields".
+     * This is suitable for, e.g. set status, delete button,
+     * or any other "one-click-action" button.
+     *
+     * @param  array  $form_params    The form attribtues.
+     * @param  string $button_label   The button text or label.
+     * @param  array  $button_options The button attributes.
+     * @param  array  $hiddenFields   Additional hidden fields.
+     *
+     * @return string                 Generated form button.
+     */
     public function formButton($form_params = [], $button_label = 'x', $button_options = [], $hiddenFields = [])
     {
         $form_params['method'] = isset($form_params['method']) ? $form_params['method'] : 'post';
@@ -296,6 +405,16 @@ class FormField
         return $htmlForm;
     }
 
+    /**
+     * A form button that dedicated for submitting a delete request.
+
+     * @param  array  $form_params    The form attribtues.
+     * @param  string $button_label   The delete button text or label.
+     * @param  array  $button_options The button attributes.
+     * @param  array  $hiddenFields   Additional hidden fields.
+     *
+     * @return string                 Generated delete form button.
+     */
     public function delete($form_params = [], $button_label = 'x', $button_options = [], $hiddenFields = [])
     {
         $form_params['method'] = 'delete';
@@ -352,6 +471,14 @@ class FormField
         return view('form-field::text')->render();
     }
 
+    /**
+     * Price input field that wrapped with form-group bootstrap div.
+     *
+     * @param  string $name    The price field name and id attribute.
+     * @param  array  $options Additional attribute for the price input.
+     *
+     * @return string          Generated price input form field.
+     */
     public function price($name, $options = [])
     {
         $options['addon'] = ['before' => isset($options['currency']) ? $options['currency'] : 'Rp'];
@@ -360,6 +487,14 @@ class FormField
         return $this->text($name, $options);
     }
 
+    /**
+     * Set the form field label.
+     *
+     * @param string $name    The field name.
+     * @param array  $options The field attributes.
+     *
+     * @return string         Generated form field label.
+     */
     private function setFormFieldLabel($name, $options)
     {
         if (isset($options['label']) && $options['label'] != false) {
@@ -371,16 +506,37 @@ class FormField
         }
     }
 
+    /**
+     * Reformat the field label.
+     *
+     * @param  string $fieldName The field name.
+     *
+     * @return string            Generated field name.
+     */
     private function formatFieldLabel($fieldName)
     {
         return ucwords(preg_replace('/(_id$|_)/im', ' ', $fieldName));
     }
 
+    /**
+     * Format the name attribute for muti-select and checkbox input field.
+     *
+     * @param  string $name Field name.
+     *
+     * @return string       Generated field name as array square bracket.
+     */
     private function formatArrayName($name)
     {
         return str_replace(['[', ']'], ['.', ''], $name);
     }
 
+    /**
+     * Get field attributes based on given option.
+     *
+     * @param  array  $options Additional form field attributes.
+     *
+     * @return array          Array of attributes for the field.
+     */
     private function getFieldAttributes(array $options)
     {
         $fieldAttributes = ['class' => 'form-control'];
@@ -410,6 +566,13 @@ class FormField
         return $fieldAttributes;
     }
 
+    /**
+     * Get the info text line for input field.
+     *
+     * @param  array $options Additional field attributes.
+     *
+     * @return string         Info text line.
+     */
     private function getInfoTextLine($options)
     {
         $htmlForm = '';
