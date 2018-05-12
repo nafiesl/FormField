@@ -2,10 +2,10 @@
 
 namespace Luthfi\FormField;
 
+use Session;
 use Collective\Html\FormFacade;
 use Illuminate\Support\Collection;
 use Illuminate\Support\MessageBag;
-use Session;
 
 /**
  * FormField Class (Site FormField Service).
@@ -558,6 +558,9 @@ class FormField
         }
         if (isset($options['min'])) {
             $fieldAttributes += ['min' => $options['min']];
+        }
+        if (isset($options['max'])) {
+            $fieldAttributes += ['max' => $options['max']];
         }
         if (isset($options['style'])) {
             $fieldAttributes += ['style' => $options['style']];
