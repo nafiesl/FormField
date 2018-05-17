@@ -342,8 +342,13 @@ class FormField
     public function textDisplay($name, $value, $options = [])
     {
         $label = isset($options['label']) ? $options['label'] : $this->formatFieldLabel($name);
+        $requiredClass = '';
 
-        $htmlForm = '<div class="form-group">';
+        if (isset($options['required']) && $options['required'] == true) {
+            $requiredClass .= ' required ';
+        }
+
+        $htmlForm = '<div class="form-group'.$requiredClass.'">';
         $htmlForm .= FormFacade::label($name, $label, ['class' => 'control-label']);
         $htmlForm .= '<div class="form-control" readonly>'.$value.'</div>';
         $htmlForm .= '</div>';

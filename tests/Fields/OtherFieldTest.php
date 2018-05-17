@@ -21,6 +21,20 @@ class OtherFieldTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_text_display_field_with_required_attribute()
+    {
+        $generatedString = '<div class="form-group required ">';
+        $generatedString .= '<label for="name" class="control-label">Name</label>';
+        $generatedString .= '<div class="form-control" readonly>Nama Saya</div>';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->textDisplay('name', 'Nama Saya', ['required' => true])
+        );
+    }
+
+    /** @test */
     public function it_returns_file_upload_field()
     {
         $generatedString = '<div class="form-group ">';
