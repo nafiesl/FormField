@@ -348,9 +348,11 @@ class FormField
             $requiredClass .= ' required ';
         }
 
+        $fieldId = isset($options['id']) ? 'id="'.$options['id'].'" ' : '';
+
         $htmlForm = '<div class="form-group'.$requiredClass.'">';
         $htmlForm .= FormFacade::label($name, $label, ['class' => 'control-label']);
-        $htmlForm .= '<div class="form-control" readonly>'.$value.'</div>';
+        $htmlForm .= '<div class="form-control" '.$fieldId.'readonly>'.$value.'</div>';
         $htmlForm .= '</div>';
 
         return $htmlForm;

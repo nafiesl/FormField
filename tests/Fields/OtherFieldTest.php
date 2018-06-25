@@ -35,6 +35,20 @@ class OtherFieldTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_text_display_field_with_id_attribute()
+    {
+        $generatedString = '<div class="form-group">';
+        $generatedString .= '<label for="name" class="control-label">Name</label>';
+        $generatedString .= '<div class="form-control" id="text-display-id" readonly>Nama Saya</div>';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->textDisplay('name', 'Nama Saya', ['id' => 'text-display-id'])
+        );
+    }
+
+    /** @test */
     public function it_returns_file_upload_field()
     {
         $generatedString = '<div class="form-group ">';
