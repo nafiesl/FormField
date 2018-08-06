@@ -569,6 +569,9 @@ class FormField
         if (isset($options['max'])) {
             $fieldAttributes += ['max' => $options['max']];
         }
+        if (isset($options['step'])) {
+            $fieldAttributes += ['step' => $options['step']];
+        }
         if (isset($options['style'])) {
             $fieldAttributes += ['style' => $options['style']];
         }

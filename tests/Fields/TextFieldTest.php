@@ -91,6 +91,20 @@ class TextFieldTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_range_field_with_min_max_and_step_attribute()
+    {
+        $generatedString = '<div class="form-group ">';
+        $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
+        $generatedString .= '<input class="form-control" min="20" max="100" step="5" name="key" type="range" id="key">';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->text('key', ['type' => 'range', 'min' => 20, 'max' => 100, 'step' => 5])
+        );
+    }
+
+    /** @test */
     public function it_returns_text_field_with_placeholder_attribute()
     {
         $generatedString = '<div class="form-group ">';
