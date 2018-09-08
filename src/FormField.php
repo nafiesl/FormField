@@ -74,6 +74,10 @@ class FormField
             $fieldAttributes += ['placeholder' => $options['placeholder']];
         }
 
+        if ($this->errorBag->has($this->formatArrayName($name))) {
+            $fieldAttributes['class'] .= ' is-invalid';
+        }
+
         $htmlForm .= FormFacade::input($type, $name, $value, $fieldAttributes);
 
         if (isset($options['addon']['after'])) {
@@ -85,7 +89,7 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small invalid-feedback">:message</span>');
 
         $htmlForm .= '</div>';
 
@@ -551,6 +555,7 @@ class FormField
         if (isset($options['class'])) {
             $fieldAttributes['class'] .= ' '.$options['class'];
         }
+
         if (isset($options['id'])) {
             $fieldAttributes += ['id' => $options['id']];
         }
