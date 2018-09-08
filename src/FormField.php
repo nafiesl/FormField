@@ -54,8 +54,9 @@ class FormField
     public function text($name, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
-        $hasError = $this->errorBag->has($this->formatArrayName($name)) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
+        $hasError = $this->errorBag->has($this->formatArrayName($name));
+        $hasErrorClass = $hasError ? 'has-error' : '';
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
 
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
@@ -74,7 +75,7 @@ class FormField
             $fieldAttributes += ['placeholder' => $options['placeholder']];
         }
 
-        if ($this->errorBag->has($this->formatArrayName($name))) {
+        if ($hasError) {
             $fieldAttributes['class'] .= ' is-invalid';
         }
 
@@ -107,8 +108,9 @@ class FormField
     public function textarea($name, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
-        $hasError = $this->errorBag->has($this->formatArrayName($name)) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
+        $hasError = $this->errorBag->has($this->formatArrayName($name));
+        $hasErrorClass = $hasError ? 'has-error' : '';
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
 
         $fieldAttributes = $this->getFieldAttributes($options);
 
@@ -116,7 +118,7 @@ class FormField
             $fieldAttributes += ['placeholder' => $options['placeholder']];
         }
 
-        if ($this->errorBag->has($this->formatArrayName($name))) {
+        if ($hasError) {
             $fieldAttributes['class'] .= ' is-invalid';
         }
 
