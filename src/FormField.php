@@ -116,6 +116,10 @@ class FormField
             $fieldAttributes += ['placeholder' => $options['placeholder']];
         }
 
+        if ($this->errorBag->has($this->formatArrayName($name))) {
+            $fieldAttributes['class'] .= ' is-invalid';
+        }
+
         $rows = isset($options['rows']) ? $options['rows'] : 3;
         $value = isset($options['value']) ? $options['value'] : null;
         $fieldAttributes += ['rows' => $rows];
@@ -126,7 +130,7 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small invalid-feedback">:message</span>');
         $htmlForm .= '</div>';
 
         return $htmlForm;
