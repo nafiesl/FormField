@@ -150,8 +150,9 @@ class FormField
     public function select($name, $selectOptions, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
-        $hasError = $this->errorBag->has($name) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
+        $hasError = $this->errorBag->has($this->formatArrayName($name));
+        $hasErrorClass = $hasError ? 'has-error' : '';
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
 
         if (isset($options['placeholder'])) {
             if ($options['placeholder'] != false) {
@@ -175,6 +176,10 @@ class FormField
             $fieldAttributes += ['multiple', 'name' => $name.'[]'];
         }
 
+        if ($hasError) {
+            $fieldAttributes['class'] .= ' is-invalid';
+        }
+
         if ($selectOptions instanceof Collection) {
             $selectOptions = !empty($placeholder) ? $selectOptions->prepend($placeholder[''], '') : $selectOptions;
         } else {
@@ -187,7 +192,7 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small invalid-feedback">:message</span>');
 
         $htmlForm .= '</div>';
 
