@@ -54,8 +54,9 @@ class FormField
     public function text($name, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
-        $hasError = $this->errorBag->has($this->formatArrayName($name)) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
+        $hasError = $this->errorBag->has($this->formatArrayName($name));
+        $hasErrorClass = $hasError ? 'has-error' : '';
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
 
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
@@ -74,6 +75,10 @@ class FormField
             $fieldAttributes += ['placeholder' => $options['placeholder']];
         }
 
+        if ($hasError) {
+            $fieldAttributes['class'] .= ' is-invalid';
+        }
+
         $htmlForm .= FormFacade::input($type, $name, $value, $fieldAttributes);
 
         if (isset($options['addon']['after'])) {
@@ -85,7 +90,7 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small invalid-feedback">:message</span>');
 
         $htmlForm .= '</div>';
 
@@ -103,13 +108,18 @@ class FormField
     public function textarea($name, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
-        $hasError = $this->errorBag->has($this->formatArrayName($name)) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
+        $hasError = $this->errorBag->has($this->formatArrayName($name));
+        $hasErrorClass = $hasError ? 'has-error' : '';
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
 
         $fieldAttributes = $this->getFieldAttributes($options);
 
         if (isset($options['placeholder'])) {
             $fieldAttributes += ['placeholder' => $options['placeholder']];
+        }
+
+        if ($hasError) {
+            $fieldAttributes['class'] .= ' is-invalid';
         }
 
         $rows = isset($options['rows']) ? $options['rows'] : 3;
@@ -122,7 +132,7 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small invalid-feedback">:message</span>');
         $htmlForm .= '</div>';
 
         return $htmlForm;
@@ -140,8 +150,9 @@ class FormField
     public function select($name, $selectOptions, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
-        $hasError = $this->errorBag->has($name) ? 'has-error' : '';
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
+        $hasError = $this->errorBag->has($this->formatArrayName($name));
+        $hasErrorClass = $hasError ? 'has-error' : '';
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
 
         if (isset($options['placeholder'])) {
             if ($options['placeholder'] != false) {
@@ -165,6 +176,10 @@ class FormField
             $fieldAttributes += ['multiple', 'name' => $name.'[]'];
         }
 
+        if ($hasError) {
+            $fieldAttributes['class'] .= ' is-invalid';
+        }
+
         if ($selectOptions instanceof Collection) {
             $selectOptions = !empty($placeholder) ? $selectOptions->prepend($placeholder[''], '') : $selectOptions;
         } else {
@@ -177,7 +192,7 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small invalid-feedback">:message</span>');
 
         $htmlForm .= '</div>';
 
@@ -196,6 +211,7 @@ class FormField
     public function multiSelect($name, $selectOptions, $options = [])
     {
         $options['multiple'] = true;
+        $options['placeholder'] = false;
 
         return $this->select($name, $selectOptions, $options);
     }
@@ -242,17 +258,15 @@ class FormField
     public function radios($name, $radioOptions, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
-        $hasError = $this->errorBag->has($name) ? 'has-error' : '';
+        $hasError = $this->errorBag->has($this->formatArrayName($name));
+        $hasErrorClass = $hasError ? 'has-error' : '';
 
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
-
-        $listStyle = isset($options['list_style']) ? $options['list_style'] : 'inline';
-        $htmlForm .= '<ul class="radio list-'.$listStyle.'">';
 
         foreach ($radioOptions as $key => $option) {
             $value = null;
-            $fieldParams = ['id' => $name.'_'.$key];
+            $fieldParams = ['id' => $name.'_'.$key, 'class' => 'form-check-input'];
 
             if (isset($options['value']) && $options['value'] == $key) {
                 $value = true;
@@ -263,17 +277,19 @@ class FormField
             if (isset($options['required']) && $options['required'] == true) {
                 $fieldParams += ['required' => true];
             }
+            if ($hasError) {
+                $fieldParams['class'] .= ' is-invalid';
+            }
 
-            $htmlForm .= '<li><label for="'.$name.'_'.$key.'">';
+            $htmlForm .= '<div class="radio form-check">';
             $htmlForm .= FormFacade::radio($name, $key, $value, $fieldParams);
-            $htmlForm .= $option;
-            $htmlForm .= '&nbsp;</label></li>';
+            $htmlForm .= '<label for="'.$name.'_'.$key.'" class="form-check-label">'.$option.'</label>';
+            $htmlForm .= '</div>';
         }
-        $htmlForm .= '</ul>';
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small text-danger">:message</span>');
 
         $htmlForm .= '</div>';
 
@@ -292,13 +308,11 @@ class FormField
     public function checkboxes($name, array $checkboxOptions, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
-        $hasError = $this->errorBag->has($name) ? 'has-error' : '';
+        $hasError = $this->errorBag->has($name);
+        $hasErrorClass = $hasError ? 'has-error' : '';
 
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
-
-        $listStyle = isset($options['list_style']) ? $options['list_style'] : 'inline';
-        $htmlForm .= '<ul class="checkbox list-'.$listStyle.'">';
 
         if (isset($options['value'])) {
             $value = $options['value'];
@@ -310,21 +324,23 @@ class FormField
         }
 
         foreach ($checkboxOptions as $key => $option) {
-            $fieldParams = ['id' => $name.'_'.$key];
+            $fieldParams = ['id' => $name.'_'.$key, 'class' => 'form-check-input'];
             if (isset($options['v-model'])) {
                 $fieldParams += ['v-model' => $options['v-model']];
             }
+            if ($hasError) {
+                $fieldParams['class'] .= ' is-invalid';
+            }
 
-            $htmlForm .= '<li><label for="'.$name.'_'.$key.'">';
+            $htmlForm .= '<div class="checkbox form-check">';
             $htmlForm .= FormFacade::checkbox($name.'[]', $key, $value->contains($key), $fieldParams);
-            $htmlForm .= $option;
-            $htmlForm .= '&nbsp;</label></li>';
+            $htmlForm .= '<label for="'.$name.'_'.$key.'" class="form-check-label">'.$option.'</label>';
+            $htmlForm .= '</div>';
         }
-        $htmlForm .= '</ul>';
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small text-danger">:message</span>');
         $htmlForm .= '</div>';
 
         return $htmlForm;
@@ -551,6 +567,7 @@ class FormField
         if (isset($options['class'])) {
             $fieldAttributes['class'] .= ' '.$options['class'];
         }
+
         if (isset($options['id'])) {
             $fieldAttributes += ['id' => $options['id']];
         }
