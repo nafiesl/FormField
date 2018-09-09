@@ -11,10 +11,8 @@ class CheckBoxesTest extends TestCase
     {
         $generatedString = '<div class="form-group ">';
         $generatedString .= '<label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;';
-        $generatedString .= '<ul class="checkbox list-inline">';
-        $generatedString .= '<li><label for="checkboxes_1"><input id="checkboxes_1" name="checkboxes[]" type="checkbox" value="1">Satu&nbsp;</label></li>';
-        $generatedString .= '<li><label for="checkboxes_2"><input id="checkboxes_2" name="checkboxes[]" type="checkbox" value="2">Dua&nbsp;</label></li>';
-        $generatedString .= '</ul>';
+        $generatedString .= '<div class="checkbox form-check"><input id="checkboxes_1" class="form-check-input" name="checkboxes[]" type="checkbox" value="1"><label for="checkboxes_1" class="form-check-label">Satu</label></div>';
+        $generatedString .= '<div class="checkbox form-check"><input id="checkboxes_2" class="form-check-input" name="checkboxes[]" type="checkbox" value="2"><label for="checkboxes_2" class="form-check-label">Dua</label></div>';
         $generatedString .= '</div>';
 
         $this->assertEquals(
@@ -28,10 +26,8 @@ class CheckBoxesTest extends TestCase
     {
         $generatedString = '<div class="form-group ">';
         $generatedString .= '<label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;';
-        $generatedString .= '<ul class="checkbox list-inline">';
-        $generatedString .= '<li><label for="checkboxes_1"><input id="checkboxes_1" checked="checked" name="checkboxes[]" type="checkbox" value="1">Satu&nbsp;</label></li>';
-        $generatedString .= '<li><label for="checkboxes_2"><input id="checkboxes_2" name="checkboxes[]" type="checkbox" value="2">Dua&nbsp;</label></li>';
-        $generatedString .= '</ul>';
+        $generatedString .= '<div class="checkbox form-check"><input id="checkboxes_1" class="form-check-input" checked="checked" name="checkboxes[]" type="checkbox" value="1"><label for="checkboxes_1" class="form-check-label">Satu</label></div>';
+        $generatedString .= '<div class="checkbox form-check"><input id="checkboxes_2" class="form-check-input" name="checkboxes[]" type="checkbox" value="2"><label for="checkboxes_2" class="form-check-label">Dua</label></div>';
         $generatedString .= '</div>';
 
         // Checked option key : 1, formated in Laravel collection
@@ -48,10 +44,8 @@ class CheckBoxesTest extends TestCase
     {
         $generatedString = '<div class="form-group ">';
         $generatedString .= '<label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;';
-        $generatedString .= '<ul class="checkbox list-inline">';
-        $generatedString .= '<li><label for="checkboxes_1"><input id="checkboxes_1" checked="checked" name="checkboxes[]" type="checkbox" value="1">Satu&nbsp;</label></li>';
-        $generatedString .= '<li><label for="checkboxes_2"><input id="checkboxes_2" checked="checked" name="checkboxes[]" type="checkbox" value="2">Dua&nbsp;</label></li>';
-        $generatedString .= '</ul>';
+        $generatedString .= '<div class="checkbox form-check"><input id="checkboxes_1" class="form-check-input" checked="checked" name="checkboxes[]" type="checkbox" value="1"><label for="checkboxes_1" class="form-check-label">Satu</label></div>';
+        $generatedString .= '<div class="checkbox form-check"><input id="checkboxes_2" class="form-check-input" checked="checked" name="checkboxes[]" type="checkbox" value="2"><label for="checkboxes_2" class="form-check-label">Dua</label></div>';
         $generatedString .= '</div>';
 
         // Checked option key : 1 and 2, formated in array
@@ -68,10 +62,8 @@ class CheckBoxesTest extends TestCase
     {
         $generatedString = '<div class="form-group ">';
         $generatedString .= '<label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;';
-        $generatedString .= '<ul class="checkbox list-inline">';
-        $generatedString .= '<li><label for="checkboxes_1"><input id="checkboxes_1" name="checkboxes[]" type="checkbox" value="1">Satu&nbsp;</label></li>';
-        $generatedString .= '<li><label for="checkboxes_2"><input id="checkboxes_2" name="checkboxes[]" type="checkbox" value="2">Dua&nbsp;</label></li>';
-        $generatedString .= '</ul>';
+        $generatedString .= '<div class="checkbox form-check"><input id="checkboxes_1" class="form-check-input" name="checkboxes[]" type="checkbox" value="1"><label for="checkboxes_1" class="form-check-label">Satu</label></div>';
+        $generatedString .= '<div class="checkbox form-check"><input id="checkboxes_2" class="form-check-input" name="checkboxes[]" type="checkbox" value="2"><label for="checkboxes_2" class="form-check-label">Dua</label></div>';
         $generatedString .= '<p class="text-info small">Field text info.</p>';
         $generatedString .= '</div>';
 
@@ -88,10 +80,8 @@ class CheckBoxesTest extends TestCase
     {
         $generatedString = '<div class="form-group required ">';
         $generatedString .= '<label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;';
-        $generatedString .= '<ul class="checkbox list-inline">';
-        $generatedString .= '<li><label for="checkboxes_1"><input id="checkboxes_1" name="checkboxes[]" type="checkbox" value="1">Satu&nbsp;</label></li>';
-        $generatedString .= '<li><label for="checkboxes_2"><input id="checkboxes_2" name="checkboxes[]" type="checkbox" value="2">Dua&nbsp;</label></li>';
-        $generatedString .= '</ul>';
+        $generatedString .= '<div class="checkbox form-check"><input id="checkboxes_1" class="form-check-input" name="checkboxes[]" type="checkbox" value="1"><label for="checkboxes_1" class="form-check-label">Satu</label></div>';
+        $generatedString .= '<div class="checkbox form-check"><input id="checkboxes_2" class="form-check-input" name="checkboxes[]" type="checkbox" value="2"><label for="checkboxes_2" class="form-check-label">Dua</label></div>';
         $generatedString .= '</div>';
 
         $this->assertEquals(

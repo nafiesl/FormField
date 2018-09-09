@@ -313,9 +313,6 @@ class FormField
         $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
-        $listStyle = isset($options['list_style']) ? $options['list_style'] : 'inline';
-        $htmlForm .= '<ul class="checkbox list-'.$listStyle.'">';
-
         if (isset($options['value'])) {
             $value = $options['value'];
             if (is_array($options['value'])) {
@@ -326,17 +323,16 @@ class FormField
         }
 
         foreach ($checkboxOptions as $key => $option) {
-            $fieldParams = ['id' => $name.'_'.$key];
+            $fieldParams = ['id' => $name.'_'.$key, 'class' => 'form-check-input'];
             if (isset($options['v-model'])) {
                 $fieldParams += ['v-model' => $options['v-model']];
             }
 
-            $htmlForm .= '<li><label for="'.$name.'_'.$key.'">';
+            $htmlForm .= '<div class="checkbox form-check">';
             $htmlForm .= FormFacade::checkbox($name.'[]', $key, $value->contains($key), $fieldParams);
-            $htmlForm .= $option;
-            $htmlForm .= '&nbsp;</label></li>';
+            $htmlForm .= '<label for="'.$name.'_'.$key.'" class="form-check-label">'.$option.'</label>';
+            $htmlForm .= '</div>';
         }
-        $htmlForm .= '</ul>';
 
         $htmlForm .= $this->getInfoTextLine($options);
 
