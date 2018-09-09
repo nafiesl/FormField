@@ -257,17 +257,15 @@ class FormField
     public function radios($name, $radioOptions, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
-        $hasError = $this->errorBag->has($name) ? 'has-error' : '';
+        $hasError = $this->errorBag->has($this->formatArrayName($name));
+        $hasErrorClass = $hasError ? 'has-error' : '';
 
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
-
-        $listStyle = isset($options['list_style']) ? $options['list_style'] : 'inline';
-        $htmlForm .= '<ul class="radio list-'.$listStyle.'">';
 
         foreach ($radioOptions as $key => $option) {
             $value = null;
-            $fieldParams = ['id' => $name.'_'.$key];
+            $fieldParams = ['id' => $name.'_'.$key, 'class' => 'form-check-input'];
 
             if (isset($options['value']) && $options['value'] == $key) {
                 $value = true;
@@ -278,17 +276,19 @@ class FormField
             if (isset($options['required']) && $options['required'] == true) {
                 $fieldParams += ['required' => true];
             }
+            if ($hasError) {
+                $fieldParams['class'] .= ' is-invalid';
+            }
 
-            $htmlForm .= '<li><label for="'.$name.'_'.$key.'">';
+            $htmlForm .= '<div class="radio form-check">';
             $htmlForm .= FormFacade::radio($name, $key, $value, $fieldParams);
-            $htmlForm .= $option;
-            $htmlForm .= '&nbsp;</label></li>';
+            $htmlForm .= '<label for="'.$name.'_'.$key.'" class="form-check-label">'.$option.'</label>';
+            $htmlForm .= '</div>';
         }
-        $htmlForm .= '</ul>';
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small text-danger">:message</span>');
 
         $htmlForm .= '</div>';
 
