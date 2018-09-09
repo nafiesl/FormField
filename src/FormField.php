@@ -308,9 +308,10 @@ class FormField
     public function checkboxes($name, array $checkboxOptions, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
-        $hasError = $this->errorBag->has($name) ? 'has-error' : '';
+        $hasError = $this->errorBag->has($name);
+        $hasErrorClass = $hasError ? 'has-error' : '';
 
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
+        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
         if (isset($options['value'])) {
@@ -327,6 +328,9 @@ class FormField
             if (isset($options['v-model'])) {
                 $fieldParams += ['v-model' => $options['v-model']];
             }
+            if ($hasError) {
+                $fieldParams['class'] .= ' is-invalid';
+            }
 
             $htmlForm .= '<div class="checkbox form-check">';
             $htmlForm .= FormFacade::checkbox($name.'[]', $key, $value->contains($key), $fieldParams);
@@ -336,7 +340,7 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small text-danger">:message</span>');
         $htmlForm .= '</div>';
 
         return $htmlForm;
