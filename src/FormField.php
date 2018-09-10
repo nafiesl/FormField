@@ -263,6 +263,7 @@ class FormField
 
         $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
+        $htmlForm .= '<div>';
 
         foreach ($radioOptions as $key => $option) {
             $value = null;
@@ -286,6 +287,7 @@ class FormField
             $htmlForm .= '<label for="'.$name.'_'.$key.'" class="form-check-label">'.$option.'</label>';
             $htmlForm .= '</div>';
         }
+        $htmlForm .= '</div>';
 
         $htmlForm .= $this->getInfoTextLine($options);
 
@@ -313,6 +315,7 @@ class FormField
 
         $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
+        $htmlForm .= '<div>';
 
         if (isset($options['value'])) {
             $value = $options['value'];
@@ -337,6 +340,7 @@ class FormField
             $htmlForm .= '<label for="'.$name.'_'.$key.'" class="form-check-label">'.$option.'</label>';
             $htmlForm .= '</div>';
         }
+        $htmlForm .= '</div>';
 
         $htmlForm .= $this->getInfoTextLine($options);
 

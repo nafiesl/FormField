@@ -10,10 +10,10 @@ class RadiosTest extends TestCase
     public function it_returns_radios_field_with_array_of_radio_options()
     {
         $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;';
+        $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;<div>';
         $generatedString .= '<div class="radio form-check"><input id="radios_1" class="form-check-input" name="radios" type="radio" value="1"><label for="radios_1" class="form-check-label">Satu</label></div>';
         $generatedString .= '<div class="radio form-check"><input id="radios_2" class="form-check-input" name="radios" type="radio" value="2"><label for="radios_2" class="form-check-label">Dua</label></div>';
-        $generatedString .= '</div>';
+        $generatedString .= '</div></div>';
 
         $this->assertEquals(
             $generatedString,
@@ -25,10 +25,10 @@ class RadiosTest extends TestCase
     public function it_returns_radios_field_with_collection_of_radio_options()
     {
         $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;';
+        $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;<div>';
         $generatedString .= '<div class="radio form-check"><input id="radios_1" class="form-check-input" name="radios" type="radio" value="1"><label for="radios_1" class="form-check-label">Satu</label></div>';
         $generatedString .= '<div class="radio form-check"><input id="radios_2" class="form-check-input" name="radios" type="radio" value="2"><label for="radios_2" class="form-check-label">Dua</label></div>';
-        $generatedString .= '</div>';
+        $generatedString .= '</div></div>';
 
         $this->assertEquals(
             $generatedString,
@@ -40,10 +40,10 @@ class RadiosTest extends TestCase
     public function it_returns_radios_field_with_default_value()
     {
         $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;';
+        $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;<div>';
         $generatedString .= '<div class="radio form-check"><input id="radios_1" class="form-check-input" name="radios" type="radio" value="1"><label for="radios_1" class="form-check-label">Satu</label></div>';
         $generatedString .= '<div class="radio form-check"><input id="radios_2" class="form-check-input" checked="checked" name="radios" type="radio" value="2"><label for="radios_2" class="form-check-label">Dua</label></div>';
-        $generatedString .= '</div>';
+        $generatedString .= '</div></div>';
 
         $this->assertEquals(
             $generatedString,
@@ -55,9 +55,9 @@ class RadiosTest extends TestCase
     public function it_returns_radios_field_with_info_text_line()
     {
         $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;';
+        $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;<div>';
         $generatedString .= '<div class="radio form-check"><input id="radios_1" class="form-check-input" name="radios" type="radio" value="1"><label for="radios_1" class="form-check-label">Satu</label></div>';
-        $generatedString .= '<div class="radio form-check"><input id="radios_2" class="form-check-input" name="radios" type="radio" value="2"><label for="radios_2" class="form-check-label">Dua</label></div>';
+        $generatedString .= '<div class="radio form-check"><input id="radios_2" class="form-check-input" name="radios" type="radio" value="2"><label for="radios_2" class="form-check-label">Dua</label></div></div>';
         $generatedString .= '<p class="text-info small">Field text info.</p>';
         $generatedString .= '</div>';
 
@@ -73,10 +73,10 @@ class RadiosTest extends TestCase
     public function it_returns_radios_field_with_required_attribute()
     {
         $generatedString = '<div class="form-group required ">';
-        $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;';
+        $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;<div>';
         $generatedString .= '<div class="radio form-check"><input id="radios_1" class="form-check-input" required name="radios" type="radio" value="1"><label for="radios_1" class="form-check-label">Satu</label></div>';
         $generatedString .= '<div class="radio form-check"><input id="radios_2" class="form-check-input" required name="radios" type="radio" value="2"><label for="radios_2" class="form-check-label">Dua</label></div>';
-        $generatedString .= '</div>';
+        $generatedString .= '</div></div>';
 
         $this->assertEquals(
             $generatedString,
@@ -96,9 +96,9 @@ class RadiosTest extends TestCase
         $this->formField->errorBag = $errorBag;
 
         $generatedString = '<div class="form-group has-error">';
-        $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;';
+        $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;<div>';
         $generatedString .= '<div class="radio form-check"><input id="radios_1" class="form-check-input is-invalid" name="radios" type="radio" value="1"><label for="radios_1" class="form-check-label">Satu</label></div>';
-        $generatedString .= '<div class="radio form-check"><input id="radios_2" class="form-check-input is-invalid" name="radios" type="radio" value="2"><label for="radios_2" class="form-check-label">Dua</label></div>';
+        $generatedString .= '<div class="radio form-check"><input id="radios_2" class="form-check-input is-invalid" name="radios" type="radio" value="2"><label for="radios_2" class="form-check-label">Dua</label></div></div>';
         $generatedString .= '<span class="help-block small text-danger">The radios field is required.</span>';
         $generatedString .= '</div>';
 
