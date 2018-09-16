@@ -12,7 +12,6 @@ class MultiSelectFieldTest extends TestCase
         $generatedString = '<div class="form-group ">';
         $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
         $generatedString .= '<select class="form-control" multiple name="key[]" id="key">';
-        $generatedString .= '<option value="" selected="selected">-- Select Key --</option>';
         $generatedString .= '<option value="1">Satu</option>';
         $generatedString .= '<option value="2">Dua</option>';
         $generatedString .= '</select>';
@@ -30,7 +29,6 @@ class MultiSelectFieldTest extends TestCase
         $generatedString = '<div class="form-group ">';
         $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
         $generatedString .= '<select class="form-control" multiple name="key[]" id="key">';
-        $generatedString .= '<option value="">-- Select Key --</option>';
         $generatedString .= '<option value="1">Satu</option>';
         $generatedString .= '<option value="2" selected="selected">Dua</option>';
         $generatedString .= '<option value="3" selected="selected">Tiga</option>';
@@ -49,7 +47,6 @@ class MultiSelectFieldTest extends TestCase
         $generatedString = '<div class="form-group ">';
         $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
         $generatedString .= '<select class="form-control" multiple name="key[]" id="key">';
-        $generatedString .= '<option value="">-- Select Key --</option>';
         $generatedString .= '<option value="1">Satu</option>';
         $generatedString .= '<option value="2" selected="selected">Dua</option>';
         $generatedString .= '<option value="3" selected="selected">Tiga</option>';
@@ -74,7 +71,6 @@ class MultiSelectFieldTest extends TestCase
         $generatedString = '<div class="form-group has-error">';
         $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
         $generatedString .= '<select class="form-control" multiple name="key[]" id="key">';
-        $generatedString .= '<option value="" selected="selected">-- Select Key --</option>';
         $generatedString .= '<option value="1">Satu</option>';
         $generatedString .= '<option value="2">Dua</option>';
         $generatedString .= '<option value="3">Tiga</option>';

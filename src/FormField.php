@@ -196,6 +196,7 @@ class FormField
     public function multiSelect($name, $selectOptions, $options = [])
     {
         $options['multiple'] = true;
+        $options['placeholder'] = false;
 
         return $this->select($name, $selectOptions, $options);
     }
