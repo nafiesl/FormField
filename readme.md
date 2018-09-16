@@ -13,7 +13,7 @@ Install this package through [Composer](https://getcomposer.org). Run following 
 composer require luthfi/formfield
 ```
 
-##### For laravel 5.5
+##### For laravel 5.5 and newer
 
 > this package will auto discovered
 
@@ -30,58 +30,68 @@ Luthfi\FormField\FormFieldServiceProvider::class,
 'Html'      => Collective\Html\HtmlFacade::class,
 ```
 
+##### For Bootstrap 3
+
+If you are using Bootstrap 3, please use `1.*` version instead:
+
+```bash
+composer require luthfi/formfield 1.*
+```
+
 ## How to use
 
 In your `blade` file, use this following sintax :
+
 ```blade
 {!! FormField::text('name') !!}
 ```
 
 will produce:
+
 ```html
 <div class="form-group ">
     <label for="name" class="control-label">Name</label>
-    <input class="form-control" name="name" type="text" id="name">
+    <input class="form-control" name="name" id="name" type="text">
 </div>
 ```
 
 Or other example for Checkbox and Radios. We can use **numeric array** or **associative array** for Labels and Values :
+
 ```blade
 {!! FormField::checkboxes('group', [1 => 'Admin', 'Member']) !!}
 {!! FormField::radios('status', ['a' => 'Active', 'b' => 'Inactive']) !!}
 ```
+
 And they will produce :
+
 ```html
 <!-- Checkboxes -->
 <div class="form-group ">
     <label for="group" class="control-label">Group</label>
-    <div class="checkbox">
-        <li>
-            <label for="group_1">
-                <input id="group_1" name="group[]" type="checkbox" value="1">
-                Admin
-            </label>
-        </li>
-        <li>
-            <label for="group_2">
-                <input id="group_2" name="group[]" type="checkbox" value="2">
-                Member
-            </label>
-        </li>
+    <div>
+        <div class="form-check form-check-inline">
+            <input id="group_1" class="form-check-input" name="group[]" value="1" type="checkbox">
+            <label for="group_1" class="form-check-label">Admin</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input id="group_2" class="form-check-input" name="group[]" value="2" type="checkbox">
+            <label for="group_2" class="form-check-label">Member</label>
+        </div>
     </div>
 </div>
 
 <!-- Radios -->
 <div class="form-group ">
-    <div class="radio">
-        <label for="status_a">
-            <input id="status_a" name="status" type="radio" value="a">
-            Active
-        </label>
-        <label for="status_b">
-            <input id="status_b" name="status" type="radio" value="b">
-            Inactive
-        </label>
+    <label for="status" class="control-label">Status</label>
+    <div>
+        <div class="form-check form-check-inline">
+            <input id="status_a" class="form-check-input" name="status" value="a" type="radio">
+            <label for="status_a" class="form-check-label">Active</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input id="status_b" class="form-check-input" name="status" value="b" type="radio">
+            <label for="status_b" class="form-check-label">Inactive</label>
+        </div>
     </div>
 </div>
 ```

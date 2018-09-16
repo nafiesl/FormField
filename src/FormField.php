@@ -282,8 +282,8 @@ class FormField
                 $fieldParams['class'] .= ' is-invalid';
             }
 
-            $listStyle = isset($options['list_style']) ? $options['list_style'] : 'form-check-inline radio-inline';
-            $htmlForm .= '<div class="radio form-check '.$listStyle.'">';
+            $listStyle = isset($options['list_style']) ? $options['list_style'] : 'form-check-inline';
+            $htmlForm .= '<div class="form-check '.$listStyle.'">';
             $htmlForm .= FormFacade::radio($name, $key, $value, $fieldParams);
             $htmlForm .= '<label for="'.$name.'_'.$key.'" class="form-check-label">'.$option.'</label>';
             $htmlForm .= '</div>';
@@ -336,8 +336,8 @@ class FormField
                 $fieldParams['class'] .= ' is-invalid';
             }
 
-            $listStyle = isset($options['list_style']) ? $options['list_style'] : 'form-check-inline checkbox-inline';
-            $htmlForm .= '<div class="checkbox form-check '.$listStyle.'">';
+            $listStyle = isset($options['list_style']) ? $options['list_style'] : 'form-check-inline';
+            $htmlForm .= '<div class="form-check '.$listStyle.'">';
             $htmlForm .= FormFacade::checkbox($name.'[]', $key, $value->contains($key), $fieldParams);
             $htmlForm .= '<label for="'.$name.'_'.$key.'" class="form-check-label">'.$option.'</label>';
             $htmlForm .= '</div>';
