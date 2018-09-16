@@ -163,7 +163,7 @@ class SelectFieldTest extends TestCase
         $generatedString .= '<option value="" selected="selected">-- Select Key --</option>';
         $generatedString .= $this->selectOptionsString;
         $generatedString .= '</select>';
-        $generatedString .= '<span class="help-block small invalid-feedback">The key field is required.</span>';
+        $generatedString .= '<span class="invalid-feedback" role="alert">The key field is required.</span>';
         $generatedString .= '</div>';
 
         $this->assertEquals(

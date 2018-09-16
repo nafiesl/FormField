@@ -75,7 +75,7 @@ class MultiSelectFieldTest extends TestCase
         $generatedString .= '<option value="2">Dua</option>';
         $generatedString .= '<option value="3">Tiga</option>';
         $generatedString .= '</select>';
-        $generatedString .= '<span class="help-block small invalid-feedback">The key field is required.</span>';
+        $generatedString .= '<span class="invalid-feedback" role="alert">The key field is required.</span>';
         $generatedString .= '</div>';
 
         $this->assertEquals(

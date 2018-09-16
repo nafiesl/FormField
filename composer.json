@@ -1,6 +1,6 @@
 {
     "name": "luthfi/formfield",
-    "description": "Laravel Form Field the extension of Laravelcollective Form for Laravel 5.3 and newer with Twitter Bootstrap 3",
+    "description": "Laravel Form Field the extension of Laravelcollective Form for Laravel 5.3 and newer with Twitter Bootstrap 4.",
     "license": "MIT",
     "authors": [
         {

@@ -103,7 +103,7 @@ class CheckBoxesTest extends TestCase
         $generatedString .= '<label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;<div>';
         $generatedString .= '<div class="checkbox form-check form-check-inline checkbox-inline"><input id="checkboxes_1" class="form-check-input is-invalid" name="checkboxes[]" type="checkbox" value="1"><label for="checkboxes_1" class="form-check-label">Satu</label></div>';
         $generatedString .= '<div class="checkbox form-check form-check-inline checkbox-inline"><input id="checkboxes_2" class="form-check-input is-invalid" name="checkboxes[]" type="checkbox" value="2"><label for="checkboxes_2" class="form-check-label">Dua</label></div></div>';
-        $generatedString .= '<span class="help-block small text-danger">The checkboxes field is required.</span>';
+        $generatedString .= '<span class="invalid-feedback" role="alert">The checkboxes field is required.</span>';
         $generatedString .= '</div>';
 
         $this->assertEquals(

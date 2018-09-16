@@ -207,7 +207,7 @@ class TextFieldTest extends TestCase
         $generatedString = '<div class="form-group has-error">';
         $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
         $generatedString .= '<input class="form-control is-invalid" name="key" type="text" id="key">';
-        $generatedString .= '<span class="help-block small invalid-feedback">The key field is required.</span>';
+        $generatedString .= '<span class="invalid-feedback" role="alert">The key field is required.</span>';
         $generatedString .= '</div>';
 
         $this->assertEquals(
@@ -228,7 +228,7 @@ class TextFieldTest extends TestCase
         $generatedString = '<div class="form-group has-error">';
         $generatedString .= '<label for="key[0]" class="control-label">Key[0]</label>&nbsp;';
         $generatedString .= '<input class="form-control is-invalid" name="key[0]" type="text" id="key[0]">';
-        $generatedString .= '<span class="help-block small invalid-feedback">The key field is required.</span>';
+        $generatedString .= '<span class="invalid-feedback" role="alert">The key field is required.</span>';
         $generatedString .= '</div>';
 
         $this->assertEquals(

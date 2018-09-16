@@ -166,7 +166,7 @@ class TextareaFieldTest extends TestCase
         $generatedString = '<div class="form-group has-error">';
         $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
         $generatedString .= '<textarea class="form-control is-invalid" rows="3" name="key" cols="50" id="key"></textarea>';
-        $generatedString .= '<span class="help-block small invalid-feedback">The key field is required.</span>';
+        $generatedString .= '<span class="invalid-feedback" role="alert">The key field is required.</span>';
         $generatedString .= '</div>';
 
         $this->assertEquals(
@@ -187,7 +187,7 @@ class TextareaFieldTest extends TestCase
         $generatedString = '<div class="form-group has-error">';
         $generatedString .= '<label for="key[0]" class="control-label">Key[0]</label>&nbsp;';
         $generatedString .= '<textarea class="form-control is-invalid" rows="3" name="key[0]" cols="50" id="key[0]"></textarea>';
-        $generatedString .= '<span class="help-block small invalid-feedback">The key field is required.</span>';
+        $generatedString .= '<span class="invalid-feedback" role="alert">The key field is required.</span>';
         $generatedString .= '</div>';
 
         $this->assertEquals(
