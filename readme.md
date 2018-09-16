@@ -10,7 +10,8 @@ This package is the extension of Laravelcollective Form for Laravel 5.3, 5.4 and
 Install this package through [Composer](https://getcomposer.org). Run following from terminal:
 
 ```
-composer require luthfi/formfield
+# For bootstrap 3
+composer require luthfi/formfield 1.*
 ```
 
 ##### For laravel 5.5
