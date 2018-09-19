@@ -99,7 +99,7 @@ class RadiosTest extends TestCase
         $generatedString .= '<label for="radios" class="control-label">Radios</label>&nbsp;<div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="radios_1" class="form-check-input is-invalid" name="radios" type="radio" value="1"><label for="radios_1" class="form-check-label">Satu</label></div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="radios_2" class="form-check-input is-invalid" name="radios" type="radio" value="2"><label for="radios_2" class="form-check-label">Dua</label></div></div>';
-        $generatedString .= '<span class="invalid-feedback" role="alert">The radios field is required.</span>';
+        $generatedString .= '<span class="small text-danger" role="alert">The radios field is required.</span>';
         $generatedString .= '</div>';
 
         $this->assertEquals(

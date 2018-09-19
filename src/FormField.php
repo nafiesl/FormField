@@ -292,7 +292,7 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="invalid-feedback" role="alert">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="small text-danger" role="alert">:message</span>');
 
         $htmlForm .= '</div>';
 
@@ -346,7 +346,7 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="invalid-feedback" role="alert">:message</span>');
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="small text-danger" role="alert">:message</span>');
         $htmlForm .= '</div>';
 
         return $htmlForm;
