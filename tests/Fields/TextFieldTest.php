@@ -167,7 +167,7 @@ class TextFieldTest extends TestCase
         $generatedString = '<div class="form-group ">';
         $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
         $generatedString .= '<div class="input-group">';
-        $generatedString .= '<span class="input-group-addon">$</span>';
+        $generatedString .= '<span class="input-group-prepend"><div class="input-group-text">$</div></span>';
         $generatedString .= '<input class="form-control" name="key" type="text" id="key">';
         $generatedString .= '</div>';
         $generatedString .= '</div>';
@@ -185,7 +185,7 @@ class TextFieldTest extends TestCase
         $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
         $generatedString .= '<div class="input-group">';
         $generatedString .= '<input class="form-control" name="key" type="text" id="key">';
-        $generatedString .= '<span class="input-group-addon">Days</span>';
+        $generatedString .= '<span class="input-group-append"><div class="input-group-text">Days</div></span>';
         $generatedString .= '</div>';
         $generatedString .= '</div>';
 
@@ -243,7 +243,7 @@ class TextFieldTest extends TestCase
         $generatedString = '<div class="form-group ">';
         $generatedString .= '<label for="price" class="control-label">Price</label>&nbsp;';
         $generatedString .= '<div class="input-group">';
-        $generatedString .= '<span class="input-group-addon">Rp</span>';
+        $generatedString .= '<span class="input-group-prepend"><div class="input-group-text">Rp</div></span>';
         $generatedString .= '<input class="form-control text-right" name="price" type="text" id="price">';
         $generatedString .= '</div>';
         $generatedString .= '</div>';
