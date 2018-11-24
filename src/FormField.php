@@ -373,7 +373,7 @@ class FormField
         $fieldId = isset($options['id']) ? 'id="'.$options['id'].'" ' : '';
 
         $htmlForm = '<div class="form-group'.$requiredClass.'">';
-        $htmlForm .= FormFacade::label($name, $label, ['class' => 'control-label']);
+        $htmlForm .= FormFacade::label($name, $label, ['class' => 'form-label']);
         $htmlForm .= '<div class="form-control" '.$fieldId.'readonly>'.$value.'</div>';
         $htmlForm .= '</div>';
 
@@ -469,7 +469,7 @@ class FormField
         $label = isset($options['label']) ? $options['label'] : $this->formatFieldLabel($name);
 
         $htmlForm = '<div class="form-group '.$hasError.'">';
-        $htmlForm .= FormFacade::label($name, $label, ['class' => 'control-label']);
+        $htmlForm .= FormFacade::label($name, $label, ['class' => 'form-label']);
 
         if (empty($contents) == false) {
             foreach ($checkboxOptions as $key => $option) {
@@ -529,9 +529,9 @@ class FormField
         if (isset($options['label']) && $options['label'] != false) {
             $label = isset($options['label']) ? $options['label'] : $this->formatFieldLabel($name);
 
-            return FormFacade::label($name, $label, ['class' => 'control-label']).'&nbsp;';
+            return FormFacade::label($name, $label, ['class' => 'form-label']).'&nbsp;';
         } elseif (!isset($options['label'])) {
-            return FormFacade::label($name, $this->formatFieldLabel($name), ['class' => 'control-label']).'&nbsp;';
+            return FormFacade::label($name, $this->formatFieldLabel($name), ['class' => 'form-label']).'&nbsp;';
         }
     }
 

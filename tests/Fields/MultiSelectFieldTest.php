@@ -10,7 +10,7 @@ class MultiSelectFieldTest extends TestCase
     public function it_returns_multi_select_field()
     {
         $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
+        $generatedString .= '<label for="key" class="form-label">Key</label>&nbsp;';
         $generatedString .= '<select class="form-control" multiple name="key[]" id="key">';
         $generatedString .= '<option value="1">Satu</option>';
         $generatedString .= '<option value="2">Dua</option>';
@@ -27,7 +27,7 @@ class MultiSelectFieldTest extends TestCase
     public function it_returns_multi_select_field_with_array_of_selected_values()
     {
         $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
+        $generatedString .= '<label for="key" class="form-label">Key</label>&nbsp;';
         $generatedString .= '<select class="form-control" multiple name="key[]" id="key">';
         $generatedString .= '<option value="1">Satu</option>';
         $generatedString .= '<option value="2" selected="selected">Dua</option>';
@@ -45,7 +45,7 @@ class MultiSelectFieldTest extends TestCase
     public function it_returns_multi_select_field_with_collection_of_selected_values()
     {
         $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
+        $generatedString .= '<label for="key" class="form-label">Key</label>&nbsp;';
         $generatedString .= '<select class="form-control" multiple name="key[]" id="key">';
         $generatedString .= '<option value="1">Satu</option>';
         $generatedString .= '<option value="2" selected="selected">Dua</option>';
@@ -69,7 +69,7 @@ class MultiSelectFieldTest extends TestCase
         $this->formField->errorBag = $errorBag;
 
         $generatedString = '<div class="form-group has-error">';
-        $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
+        $generatedString .= '<label for="key" class="form-label">Key</label>&nbsp;';
         $generatedString .= '<select class="form-control is-invalid" multiple name="key[]" id="key">';
         $generatedString .= '<option value="1">Satu</option>';
         $generatedString .= '<option value="2">Dua</option>';
