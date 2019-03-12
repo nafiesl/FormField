@@ -169,7 +169,7 @@ class FormField
         $fieldAttributes = $this->getFieldAttributes($options);
 
         if (isset($options['multiple']) && $options['multiple'] == true) {
-            $fieldAttributes += ['multiple', 'name' => $name.'[]'];
+            $fieldAttributes = array_merge($fieldAttributes, ['multiple', 'name' => $name.'[]']);
         }
 
         if ($hasError) {
