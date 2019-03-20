@@ -255,6 +255,23 @@ class TextFieldTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_price_field_with_correct_given_class()
+    {
+        $generatedString = '<div class="form-group ">';
+        $generatedString .= '<label for="price" class="form-label">Price</label>&nbsp;';
+        $generatedString .= '<div class="input-group">';
+        $generatedString .= '<span class="input-group-prepend"><div class="input-group-text">Rp</div></span>';
+        $generatedString .= '<input class="form-control custom-class text-right" name="price" type="text" id="price">';
+        $generatedString .= '</div>';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->price('price', ['class' => 'custom-class'])
+        );
+    }
+
+    /** @test */
     public function it_returns_email_field()
     {
         $generatedString = '<div class="form-group ">';
