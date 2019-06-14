@@ -77,6 +77,20 @@ class TextFieldTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_text_field_with_autofocus_attribute()
+    {
+        $generatedString = '<div class="form-group ">';
+        $generatedString .= '<label for="key" class="control-label">Key</label>&nbsp;';
+        $generatedString .= '<input class="form-control" autofocus name="key" type="text" id="key">';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->text('key', ['autofocus' => true])
+        );
+    }
+
+    /** @test */
     public function it_returns_text_field_with_min_and_max_attribute()
     {
         $generatedString = '<div class="form-group ">';

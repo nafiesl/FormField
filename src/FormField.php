@@ -564,6 +564,9 @@ class FormField
         if (isset($options['required']) && $options['required'] == true) {
             $fieldAttributes += ['required'];
         }
+        if (isset($options['autofocus']) && $options['autofocus'] == true) {
+            $fieldAttributes += ['autofocus'];
+        }
         if (isset($options['min'])) {
             $fieldAttributes += ['min' => $options['min']];
         }
