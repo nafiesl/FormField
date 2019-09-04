@@ -562,6 +562,9 @@ class FormField
         if (isset($options['readonly']) && $options['readonly'] == true) {
             $fieldAttributes += ['readonly'];
         }
+        if (isset($options['autofocus']) && $options['autofocus'] == true) {
+            $fieldAttributes += ['autofocus'];
+        }
         if (isset($options['disabled']) && $options['disabled'] == true) {
             $fieldAttributes += ['disabled'];
         }
