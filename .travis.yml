@@ -9,4 +9,4 @@ before_script:
   - travis_retry composer update --prefer-source --no-interaction
 
 script:
-  - phpunit --bootstrap=vendor/autoload.php tests
+  - vendor/bin/phpunit --bootstrap=vendor/autoload.php tests
