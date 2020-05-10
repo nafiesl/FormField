@@ -2,13 +2,13 @@
 
 namespace Luthfi\FormField;
 
-use Session;
 use Collective\Html\FormFacade;
 use Illuminate\Support\Collection;
 use Illuminate\Support\MessageBag;
+use Session;
 
 /**
- * FormField Class (Site FormField Service).
+ * FormField Class.
  */
 class FormField
 {
