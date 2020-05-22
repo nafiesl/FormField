@@ -123,4 +123,30 @@ class CheckBoxesTest extends TestCase
             $this->formField->checkboxes('checkboxes', [1 => 'Satu', 2 => 'Dua'])
         );
     }
+
+    /** @test */
+    public function it_shows_checkboxes_validation_error_for_each_index()
+    {
+        // Mock error message on "checkboxes" attribute.
+        $errorBag = new \Illuminate\Support\MessageBag();
+        $errorBag->add('checkboxes.0', 'The selected checkboxes.0 is invalid.');
+        $errorBag->add('checkboxes.0', 'The selected checkboxes.0 must be a string.');
+        $errorBag->add('checkboxes.1', 'The selected checkboxes.1 must be a string.');
+
+        $this->formField->errorBag = $errorBag;
+
+        $generatedString = '<div class="form-group has-error">';
+        $generatedString .= '<label for="checkboxes" class="control-label">Checkboxes</label>&nbsp;';
+        $generatedString .= '<ul class="checkbox list-inline">';
+        $generatedString .= '<li><label for="checkboxes_one"><input id="checkboxes_one" name="checkboxes[]" type="checkbox" value="one">Satu&nbsp;</label></li>';
+        $generatedString .= '<li><label for="checkboxes_two"><input id="checkboxes_two" name="checkboxes[]" type="checkbox" value="two">Dua&nbsp;</label></li>';
+        $generatedString .= '</ul>';
+        $generatedString .= '<span class="help-block small">The selected checkboxes.0 is invalid. The selected checkboxes.1 must be a string.</span>';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->checkboxes('checkboxes', ['one' => 'Satu', 'two' => 'Dua'])
+        );
+    }
 }

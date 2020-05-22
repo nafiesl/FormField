@@ -293,7 +293,7 @@ class FormField
     public function checkboxes($name, array $checkboxOptions, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
-        $hasError = $this->errorBag->has($name) ? 'has-error' : '';
+        $hasError = (bool) $this->getErrorMessage($name, $checkboxOptions) ? 'has-error' : '';
 
         $htmlForm = '<div class="form-group '.$requiredClass.$hasError.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
@@ -325,10 +325,22 @@ class FormField
 
         $htmlForm .= $this->getInfoTextLine($options);
 
-        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="help-block small">:message</span>');
+        $htmlForm .= $this->getErrorMessage($name, $checkboxOptions);
         $htmlForm .= '</div>';
 
         return $htmlForm;
+    }
+
+    private function getErrorMessage($name, $checkboxOptions = [])
+    {
+        $message = '';
+        $message .= $this->errorBag->first($this->formatArrayName($name)).' ';
+        foreach (array_keys($checkboxOptions) as $index => $key) {
+            $message .= $this->errorBag->first($name.'.'.$index).' ';
+        }
+        $message = trim($message);
+
+        return $message ? '<span class="help-block small">'.$message.'</span>' : null;
     }
 
     /**
