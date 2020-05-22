@@ -302,7 +302,7 @@ class FormField
     public function checkboxes($name, array $checkboxOptions, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
-        $hasError = !!$this->getErrorMessage($name, $checkboxOptions);
+        $hasError = (bool) $this->getErrorMessage($name, $checkboxOptions);
         $hasErrorClass = $hasError ? 'has-error' : '';
 
         $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
