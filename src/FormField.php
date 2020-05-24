@@ -329,7 +329,7 @@ class FormField
 
             $listStyle = isset($options['list_style']) ? $options['list_style'] : 'form-check-inline';
             $htmlForm .= '<div class="form-check '.$listStyle.'">';
-            $htmlForm .= FormFacade::checkbox($name.'[]', $key, $value->contains($key), $fieldParams);
+            $htmlForm .= FormFacade::checkbox($name.'['.$key.']', $key, $value->contains($key), $fieldParams);
             $htmlForm .= '<label for="'.$name.'_'.$key.'" class="form-check-label">'.$option.'</label>';
             $htmlForm .= '</div>';
         }
@@ -347,8 +347,8 @@ class FormField
     {
         $message = '';
         $message .= $this->errorBag->first($this->formatArrayName($name)).' ';
-        foreach (array_keys($checkboxOptions) as $index => $key) {
-            $message .= $this->errorBag->first($name.'.'.$index).' ';
+        foreach ($checkboxOptions as $key => $value) {
+            $message .= $this->errorBag->first($name.'.'.$key).' ';
         }
         $message = trim($message);
 
