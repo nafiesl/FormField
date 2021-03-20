@@ -52,7 +52,7 @@ class OtherFieldTest extends TestCase
     public function it_returns_file_upload_field()
     {
         $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="file_name" class="form-label">File Name</label>&nbsp;';
+        $generatedString .= '<label for="file_name" class="form-label">File Name</label>';
         $generatedString .= '<input class="form-control" name="file_name" type="file" id="file_name">';
         $generatedString .= '</div>';
 
@@ -66,7 +66,7 @@ class OtherFieldTest extends TestCase
     public function it_returns_file_upload_field_with_required_attribute()
     {
         $generatedString = '<div class="form-group required ">';
-        $generatedString .= '<label for="file_name" class="form-label">File Name</label>&nbsp;';
+        $generatedString .= '<label for="file_name" class="form-label">File Name</label>';
         $generatedString .= '<input class="form-control" required name="file_name" type="file" id="file_name">';
         $generatedString .= '</div>';
 
@@ -80,7 +80,7 @@ class OtherFieldTest extends TestCase
     public function it_returns_file_upload_field_with_info_text_line()
     {
         $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="file_name" class="form-label">File Name</label>&nbsp;';
+        $generatedString .= '<label for="file_name" class="form-label">File Name</label>';
         $generatedString .= '<input class="form-control" name="file_name" type="file" id="file_name">';
         $generatedString .= '<p class="text-info small">Field text info.</p>';
         $generatedString .= '</div>';

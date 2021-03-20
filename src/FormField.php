@@ -526,9 +526,9 @@ class FormField
         if (isset($options['label']) && $options['label'] != false) {
             $label = isset($options['label']) ? $options['label'] : $this->formatFieldLabel($name);
 
-            return FormFacade::label($name, $label, ['class' => 'form-label']).'&nbsp;';
+            return FormFacade::label($name, $label, ['class' => 'form-label']);
         } elseif (!isset($options['label'])) {
-            return FormFacade::label($name, $this->formatFieldLabel($name), ['class' => 'form-label']).'&nbsp;';
+            return FormFacade::label($name, $this->formatFieldLabel($name), ['class' => 'form-label']);
         }
     }
 
