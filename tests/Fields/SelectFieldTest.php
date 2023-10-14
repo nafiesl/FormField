@@ -12,8 +12,8 @@ class SelectFieldTest extends TestCase
     /** @test */
     public function it_returns_select_field_with_array_of_select_options()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<select class="form-control" id="key" name="key">';
         $generatedString .= '<option value="" selected="selected">-- Select Key --</option>';
         $generatedString .= $this->selectOptionsString;
@@ -29,8 +29,8 @@ class SelectFieldTest extends TestCase
     /** @test */
     public function it_returns_select_field_with_required_attribute()
     {
-        $generatedString = '<div class="form-group required ">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 required ">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key <span class="text-danger">*</span></label>';
         $generatedString .= '<select class="form-control" required id="key" name="key">';
         $generatedString .= '<option value="" selected="selected">-- Select Key --</option>';
         $generatedString .= $this->selectOptionsString;
@@ -46,8 +46,8 @@ class SelectFieldTest extends TestCase
     /** @test */
     public function it_returns_select_field_with_disabled_attribute()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<select class="form-control" disabled id="key" name="key">';
         $generatedString .= '<option value="" selected="selected">-- Select Key --</option>';
         $generatedString .= $this->selectOptionsString;
@@ -63,8 +63,8 @@ class SelectFieldTest extends TestCase
     /** @test */
     public function it_returns_select_field_with_readonly_attribute()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<select class="form-control" readonly id="key" name="key">';
         $generatedString .= '<option value="" selected="selected">-- Select Key --</option>';
         $generatedString .= $this->selectOptionsString;
@@ -80,8 +80,8 @@ class SelectFieldTest extends TestCase
     /** @test */
     public function it_returns_select_field_with_collection_of_select_options()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<select class="form-control" id="key" name="key">';
         $generatedString .= '<option value="" selected="selected">-- Select Key --</option>';
         $generatedString .= $this->selectOptionsString;
@@ -97,8 +97,8 @@ class SelectFieldTest extends TestCase
     /** @test */
     public function it_returns_select_field_with_placeholder_set_to_false()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<select class="form-control" id="key" name="key">';
         $generatedString .= $this->selectOptionsString;
         $generatedString .= '</select>';
@@ -113,8 +113,8 @@ class SelectFieldTest extends TestCase
     /** @test */
     public function it_returns_select_field_with_selected_values()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<select class="form-control" id="key" name="key">';
         $generatedString .= '<option value="">-- Select Key --</option>';
         $generatedString .= '<option value="1">Satu</option>';
@@ -131,8 +131,8 @@ class SelectFieldTest extends TestCase
     /** @test */
     public function it_returns_select_field_with_info_text_line()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<select class="form-control" id="key" name="key">';
         $generatedString .= '<option value="" selected="selected">-- Select Key --</option>';
         $generatedString .= $this->selectOptionsString;
@@ -157,8 +157,8 @@ class SelectFieldTest extends TestCase
 
         $this->formField->errorBag = $errorBag;
 
-        $generatedString = '<div class="form-group has-error">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 has-error">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<select class="form-control is-invalid" id="key" name="key">';
         $generatedString .= '<option value="" selected="selected">-- Select Key --</option>';
         $generatedString .= $this->selectOptionsString;

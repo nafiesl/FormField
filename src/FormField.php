@@ -24,7 +24,7 @@ class FormField
     /**
      * Form opening tag with form atributes.
      *
-     * @param  array  $options The form attributes.
+     * @param  array  $options  The form attributes.
      * @return string The form opening tag.
      */
     public function open($options = [])
@@ -35,7 +35,7 @@ class FormField
     /**
      * Form closing tag.
      *
-     * @return string  The form closing tag.
+     * @return string The form closing tag.
      */
     public function close()
     {
@@ -47,14 +47,14 @@ class FormField
      *
      * @param  string  $name  The text field name and id attribute.
      * @param  array  $options  Additional attribute for the text input.
-     * @return string  Generated text input form field.
+     * @return string Generated text input form field.
      */
     public function text($name, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
         $hasError = $this->errorBag->has($this->formatArrayName($name));
         $hasErrorClass = $hasError ? 'has-error' : '';
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
+        $htmlForm = '<div class="form-group mb-3 '.$requiredClass.$hasErrorClass.'">';
 
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 
@@ -100,14 +100,14 @@ class FormField
      *
      * @param  string  $name  The textarea field name and id attribute.
      * @param  array  $options  Additional attribute for the textarea input.
-     * @return string  Generated textarea input form field.
+     * @return string Generated textarea input form field.
      */
     public function textarea($name, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
         $hasError = $this->errorBag->has($this->formatArrayName($name));
         $hasErrorClass = $hasError ? 'has-error' : '';
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
+        $htmlForm = '<div class="form-group mb-3 '.$requiredClass.$hasErrorClass.'">';
 
         $fieldAttributes = $this->getFieldAttributes($options);
 
@@ -141,14 +141,14 @@ class FormField
      * @param  [type]  $name  Select field name.
      * @param  array|Collection  $selectOptions  Select options.
      * @param  array  $options  Select input attributes.
-     * @return string  Generated select input form field.
+     * @return string Generated select input form field.
      */
     public function select($name, $selectOptions, $options = [])
     {
         $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
         $hasError = $this->errorBag->has($this->formatArrayName($name));
         $hasErrorClass = $hasError ? 'has-error' : '';
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
+        $htmlForm = '<div class="form-group mb-3 '.$requiredClass.$hasErrorClass.'">';
 
         if (isset($options['placeholder'])) {
             if ($options['placeholder'] != false) {
@@ -201,7 +201,7 @@ class FormField
      * @param  string  $name  Select field name which will become array input.
      * @param  array|Collection  $selectOptions  Select options.
      * @param  array  $options  Select input attributes.
-     * @return string  Generated multi-select input form field.
+     * @return string Generated multi-select input form field.
      */
     public function multiSelect($name, $selectOptions, $options = [])
     {
@@ -216,7 +216,7 @@ class FormField
      *
      * @param  string  $name  The email field name and id attribute.
      * @param  array  $options  Additional attribute for the email input.
-     * @return string  Generated email input form field.
+     * @return string Generated email input form field.
      */
     public function email($name, $options = [])
     {
@@ -230,7 +230,7 @@ class FormField
      *
      * @param  string  $name  The password field name and id attribute.
      * @param  array  $options  Additional attribute for the password input.
-     * @return string  Generated password input form field.
+     * @return string Generated password input form field.
      */
     public function password($name, $options = [])
     {
@@ -245,7 +245,7 @@ class FormField
      * @param  string  $name  Radio field name.
      * @param  array|Collection  $radioOptions  Radio options.
      * @param  array  $options  Radio input attributes.
-     * @return string  Generated radio input form field.
+     * @return string Generated radio input form field.
      */
     public function radios($name, $radioOptions, $options = [])
     {
@@ -253,7 +253,7 @@ class FormField
         $hasError = $this->errorBag->has($this->formatArrayName($name));
         $hasErrorClass = $hasError ? 'has-error' : '';
 
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
+        $htmlForm = '<div class="form-group mb-3 '.$requiredClass.$hasErrorClass.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
         $htmlForm .= '<div>';
 
@@ -294,10 +294,10 @@ class FormField
     /**
      * Multi checkbox with array input, wrapped with bootstrap form-group div.
      *
-     * @param  string  $name   Name of checkbox field which become an array input.
+     * @param  string  $name  Name of checkbox field which become an array input.
      * @param  array  $checkboxOptions  Checkbox options.
      * @param  array  $options  Checkbox input attributes.
-     * @return string  Generated multi-checkboxes input.
+     * @return string Generated multi-checkboxes input.
      */
     public function checkboxes($name, array $checkboxOptions, $options = [])
     {
@@ -305,7 +305,7 @@ class FormField
         $hasError = (bool) $this->getErrorMessage($name, $checkboxOptions);
         $hasErrorClass = $hasError ? 'has-error' : '';
 
-        $htmlForm = '<div class="form-group '.$requiredClass.$hasErrorClass.'">';
+        $htmlForm = '<div class="form-group mb-3 '.$requiredClass.$hasErrorClass.'">';
         $htmlForm .= $this->setFormFieldLabel($name, $options);
         $htmlForm .= '<div>';
 
@@ -361,7 +361,7 @@ class FormField
      * @param  string  $name  The disabled text field name.
      * @param  string  $value  The field value (displayed text).
      * @param  array  $options  The attributes for the disabled text field.
-     * @return string  Generated disabled text field.
+     * @return string Generated disabled text field.
      */
     public function textDisplay($name, $value, $options = [])
     {
@@ -374,8 +374,8 @@ class FormField
 
         $fieldId = isset($options['id']) ? 'id="'.$options['id'].'" ' : '';
 
-        $htmlForm = '<div class="form-group'.$requiredClass.'">';
-        $htmlForm .= FormFacade::label($name, $label, ['class' => 'form-label']);
+        $htmlForm = '<div class="form-group mb-3'.$requiredClass.'">';
+        $htmlForm .= FormFacade::label($name, $label, ['class' => 'form-label fw-bold']);
         $htmlForm .= '<div class="form-control" '.$fieldId.'readonly>'.$value.'</div>';
         $htmlForm .= '</div>';
 
@@ -387,7 +387,7 @@ class FormField
      *
      * @param  string  $name  The file field name and id attribute.
      * @param  array  $options  Additional attribute for the file input.
-     * @return string  Generated file input form field.
+     * @return string Generated file input form field.
      */
     public function file($name, $options = [])
     {
@@ -405,7 +405,7 @@ class FormField
      * @param  string  $button_label  The button text or label.
      * @param  array  $button_options  The button attributes.
      * @param  array  $hiddenFields  Additional hidden fields.
-     * @return string  Generated form button.
+     * @return string Generated form button.
      */
     public function formButton($form_params = [], $button_label = 'x', $button_options = [], $hiddenFields = [])
     {
@@ -441,7 +441,7 @@ class FormField
      * @param  string  $button_label  The delete button text or label.
      * @param  array  $button_options  The button attributes.
      * @param  array  $hiddenFields  Additional hidden fields.
-     * @return string  Generated delete form button.
+     * @return string Generated delete form button.
      */
     public function delete($form_params = [], $button_label = 'x', $button_options = [], $hiddenFields = [])
     {
@@ -467,8 +467,8 @@ class FormField
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
         $label = isset($options['label']) ? $options['label'] : $this->formatFieldLabel($name);
 
-        $htmlForm = '<div class="form-group '.$hasError.'">';
-        $htmlForm .= FormFacade::label($name, $label, ['class' => 'form-label']);
+        $htmlForm = '<div class="form-group mb-3 '.$hasError.'">';
+        $htmlForm .= FormFacade::label($name, $label, ['class' => 'form-label fw-bold']);
 
         if (empty($contents) == false) {
             foreach ($checkboxOptions as $key => $option) {
@@ -504,7 +504,7 @@ class FormField
      *
      * @param  string  $name  The price field name and id attribute.
      * @param  array  $options  Additional attribute for the price input.
-     * @return string  Generated price input form field.
+     * @return string Generated price input form field.
      */
     public function price($name, $options = [])
     {
@@ -519,16 +519,24 @@ class FormField
      *
      * @param  string  $name  The field name.
      * @param  array  $options  The field attributes.
-     * @return string  Generated form field label.
+     * @return string Generated form field label.
      */
     private function setFormFieldLabel($name, $options)
     {
         if (isset($options['label']) && $options['label'] != false) {
             $label = isset($options['label']) ? $options['label'] : $this->formatFieldLabel($name);
+            if (isset($options['required']) && $options['required'] == true) {
+                $label .= ' <span class="text-danger">*</span>';
+            }
 
-            return FormFacade::label($name, $label, ['class' => 'form-label']);
+            return FormFacade::label($name, $label, ['class' => 'form-label fw-bold'], false);
         } elseif (!isset($options['label'])) {
-            return FormFacade::label($name, $this->formatFieldLabel($name), ['class' => 'form-label']);
+            $label = $this->formatFieldLabel($name);
+            if (isset($options['required']) && $options['required'] == true) {
+                $label .= ' <span class="text-danger">*</span>';
+            }
+
+            return FormFacade::label($name, $label, ['class' => 'form-label fw-bold'], false);
         }
     }
 
@@ -536,7 +544,7 @@ class FormField
      * Reformat the field label.
      *
      * @param  string  $fieldName  The field name.
-     * @return string  Generated field name.
+     * @return string Generated field name.
      */
     private function formatFieldLabel($fieldName)
     {
@@ -547,7 +555,7 @@ class FormField
      * Format the name attribute for muti-select and checkbox input field.
      *
      * @param  string  $name  Field name.
-     * @return string  Generated field name as array square bracket.
+     * @return string Generated field name as array square bracket.
      */
     private function formatArrayName($name)
     {
@@ -558,7 +566,7 @@ class FormField
      * Get field attributes based on given option.
      *
      * @param  array  $options  Additional form field attributes.
-     * @return array  Array of attributes for the field.
+     * @return array Array of attributes for the field.
      */
     private function getFieldAttributes(array $options)
     {
@@ -603,7 +611,7 @@ class FormField
      * Get the info text line for input field.
      *
      * @param  array  $options  Additional field attributes.
-     * @return string  Info text line.
+     * @return string Info text line.
      */
     private function getInfoTextLine($options)
     {

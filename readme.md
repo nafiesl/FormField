@@ -3,9 +3,33 @@
 [![Build Status](https://travis-ci.org/nafiesl/FormField.svg?branch=master)](https://travis-ci.org/nafiesl/FormField)
 [![Total Downloads](https://poser.pugx.org/luthfi/formfield/downloads)](https://packagist.org/packages/luthfi/formfield)
 
-This package is the extension of Laravelcollective Form for Laravel 5.3, 5.4 and 5.5 with Twitter Bootstrap 3 and 4 form fields wrapper.
+This package is the extension of Laravelcollective Form for Laravel 5 and newer with Twitter Bootstrap 3, 4 and 5 form fields wrapper.
 
 ## How to install
+
+##### For Bootstrap 5
+
+If you are using Bootstrap 5, please use `3.*` version instead:
+
+```bash
+composer require luthfi/formfield 3.*
+```
+
+##### For Bootstrap 4
+
+If you are using Bootstrap 4, please use `2.*` version instead:
+
+```bash
+composer require luthfi/formfield 2.*
+```
+
+##### For Bootstrap 3
+
+If you are using Bootstrap 3, please use `1.*` version instead:
+
+```bash
+composer require luthfi/formfield 1.*
+```
 
 Install this package through [Composer](https://getcomposer.org). Run following from terminal:
 
@@ -28,14 +52,6 @@ Luthfi\FormField\FormFieldServiceProvider::class,
 'FormField' => Luthfi\FormField\FormFieldFacade::class,
 'Form'      => Collective\Html\FormFacade::class,
 'Html'      => Collective\Html\HtmlFacade::class,
-```
-
-##### For Bootstrap 3
-
-If you are using Bootstrap 3, please use `1.*` version instead:
-
-```bash
-composer require luthfi/formfield 1.*
 ```
 
 ## How to use

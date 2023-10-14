@@ -9,8 +9,8 @@ class MultiSelectFieldTest extends TestCase
     /** @test */
     public function it_returns_multi_select_field()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<select class="form-control" multiple name="key[]" id="key">';
         $generatedString .= '<option value="1">Satu</option>';
         $generatedString .= '<option value="2">Dua</option>';
@@ -26,8 +26,8 @@ class MultiSelectFieldTest extends TestCase
     /** @test */
     public function it_returns_multi_select_field_with_required_attribute()
     {
-        $generatedString = '<div class="form-group required ">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 required ">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key <span class="text-danger">*</span></label>';
         $generatedString .= '<select class="form-control" required multiple name="key[]" id="key">';
         $generatedString .= '<option value="1">Satu</option>';
         $generatedString .= '<option value="2">Dua</option>';
@@ -43,8 +43,8 @@ class MultiSelectFieldTest extends TestCase
     /** @test */
     public function it_returns_multi_select_field_with_array_of_selected_values()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<select class="form-control" multiple name="key[]" id="key">';
         $generatedString .= '<option value="1">Satu</option>';
         $generatedString .= '<option value="2" selected="selected">Dua</option>';
@@ -61,8 +61,8 @@ class MultiSelectFieldTest extends TestCase
     /** @test */
     public function it_returns_multi_select_field_with_collection_of_selected_values()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<select class="form-control" multiple name="key[]" id="key">';
         $generatedString .= '<option value="1">Satu</option>';
         $generatedString .= '<option value="2" selected="selected">Dua</option>';
@@ -85,8 +85,8 @@ class MultiSelectFieldTest extends TestCase
 
         $this->formField->errorBag = $errorBag;
 
-        $generatedString = '<div class="form-group has-error">';
-        $generatedString .= '<label for="key" class="form-label">Key</label>';
+        $generatedString = '<div class="form-group mb-3 has-error">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<select class="form-control is-invalid" multiple name="key[]" id="key">';
         $generatedString .= '<option value="1">Satu</option>';
         $generatedString .= '<option value="2">Dua</option>';
