@@ -9,8 +9,8 @@ class CheckBoxesTest extends TestCase
     /** @test */
     public function it_returns_default_checkboxes_field()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="checkboxes" class="form-label">Checkboxes</label><div>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="checkboxes" class="form-label fw-bold">Checkboxes</label><div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_1" class="form-check-input" name="checkboxes[1]" type="checkbox" value="1"><label for="checkboxes_1" class="form-check-label">Satu</label></div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_2" class="form-check-input" name="checkboxes[2]" type="checkbox" value="2"><label for="checkboxes_2" class="form-check-label">Dua</label></div>';
         $generatedString .= '</div></div>';
@@ -24,8 +24,8 @@ class CheckBoxesTest extends TestCase
     /** @test */
     public function it_returns_checkboxes_field_with_checked_value_collection()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="checkboxes" class="form-label">Checkboxes</label><div>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="checkboxes" class="form-label fw-bold">Checkboxes</label><div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_1" class="form-check-input" checked="checked" name="checkboxes[1]" type="checkbox" value="1"><label for="checkboxes_1" class="form-check-label">Satu</label></div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_2" class="form-check-input" name="checkboxes[2]" type="checkbox" value="2"><label for="checkboxes_2" class="form-check-label">Dua</label></div>';
         $generatedString .= '</div></div>';
@@ -42,8 +42,8 @@ class CheckBoxesTest extends TestCase
     /** @test */
     public function it_returns_checkboxes_field_with_checked_value_array()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="checkboxes" class="form-label">Checkboxes</label><div>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="checkboxes" class="form-label fw-bold">Checkboxes</label><div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_1" class="form-check-input" checked="checked" name="checkboxes[1]" type="checkbox" value="1"><label for="checkboxes_1" class="form-check-label">Satu</label></div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_2" class="form-check-input" checked="checked" name="checkboxes[2]" type="checkbox" value="2"><label for="checkboxes_2" class="form-check-label">Dua</label></div>';
         $generatedString .= '</div></div>';
@@ -60,8 +60,8 @@ class CheckBoxesTest extends TestCase
     /** @test */
     public function it_returns_checkboxes_field_with_info_text_line()
     {
-        $generatedString = '<div class="form-group ">';
-        $generatedString .= '<label for="checkboxes" class="form-label">Checkboxes</label><div>';
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="checkboxes" class="form-label fw-bold">Checkboxes</label><div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_1" class="form-check-input" name="checkboxes[1]" type="checkbox" value="1"><label for="checkboxes_1" class="form-check-label">Satu</label></div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_2" class="form-check-input" name="checkboxes[2]" type="checkbox" value="2"><label for="checkboxes_2" class="form-check-label">Dua</label></div></div>';
         $generatedString .= '<p class="text-info small">Field text info.</p>';
@@ -78,8 +78,8 @@ class CheckBoxesTest extends TestCase
     /** @test */
     public function it_returns_checkboxes_field_with_required_attribute()
     {
-        $generatedString = '<div class="form-group required ">';
-        $generatedString .= '<label for="checkboxes" class="form-label">Checkboxes</label><div>';
+        $generatedString = '<div class="form-group mb-3 required ">';
+        $generatedString .= '<label for="checkboxes" class="form-label fw-bold">Checkboxes <span class="text-danger">*</span></label><div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_1" class="form-check-input" name="checkboxes[1]" type="checkbox" value="1"><label for="checkboxes_1" class="form-check-label">Satu</label></div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_2" class="form-check-input" name="checkboxes[2]" type="checkbox" value="2"><label for="checkboxes_2" class="form-check-label">Dua</label></div>';
         $generatedString .= '</div></div>';
@@ -99,8 +99,8 @@ class CheckBoxesTest extends TestCase
 
         $this->formField->errorBag = $errorBag;
 
-        $generatedString = '<div class="form-group has-error">';
-        $generatedString .= '<label for="checkboxes" class="form-label">Checkboxes</label><div>';
+        $generatedString = '<div class="form-group mb-3 has-error">';
+        $generatedString .= '<label for="checkboxes" class="form-label fw-bold">Checkboxes</label><div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_1" class="form-check-input is-invalid" name="checkboxes[1]" type="checkbox" value="1"><label for="checkboxes_1" class="form-check-label">Satu</label></div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_2" class="form-check-input is-invalid" name="checkboxes[2]" type="checkbox" value="2"><label for="checkboxes_2" class="form-check-label">Dua</label></div></div>';
         $generatedString .= '<span class="small text-danger" role="alert">The checkboxes field is required.</span>';
@@ -123,8 +123,8 @@ class CheckBoxesTest extends TestCase
 
         $this->formField->errorBag = $errorBag;
 
-        $generatedString = '<div class="form-group has-error">';
-        $generatedString .= '<label for="checkboxes" class="form-label">Checkboxes</label><div>';
+        $generatedString = '<div class="form-group mb-3 has-error">';
+        $generatedString .= '<label for="checkboxes" class="form-label fw-bold">Checkboxes</label><div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_one" class="form-check-input is-invalid" name="checkboxes[one]" type="checkbox" value="one"><label for="checkboxes_one" class="form-check-label">Satu</label></div>';
         $generatedString .= '<div class="form-check form-check-inline"><input id="checkboxes_two" class="form-check-input is-invalid" name="checkboxes[two]" type="checkbox" value="two"><label for="checkboxes_two" class="form-check-label">Dua</label></div></div>';
         $generatedString .= '<span class="small text-danger" role="alert">The selected checkboxes.one is invalid. The selected checkboxes.two must be a string.</span>';
