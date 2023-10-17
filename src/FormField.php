@@ -62,7 +62,7 @@ class FormField
             $htmlForm .= '<div class="input-group">';
         }
         if (isset($options['addon']['before'])) {
-            $htmlForm .= '<span class="input-group-prepend"><div class="input-group-text">'.$options['addon']['before'].'</div></span>';
+            $htmlForm .= '<span class="input-group-text">'.$options['addon']['before'].'</span>';
         }
 
         $type = isset($options['type']) ? $options['type'] : 'text';
@@ -80,7 +80,7 @@ class FormField
         $htmlForm .= FormFacade::input($type, $name, $value, $fieldAttributes);
 
         if (isset($options['addon']['after'])) {
-            $htmlForm .= '<span class="input-group-append"><div class="input-group-text">'.$options['addon']['after'].'</div></span>';
+            $htmlForm .= '<span class="input-group-text">'.$options['addon']['after'].'</span>';
         }
         if (isset($options['addon'])) {
             $htmlForm .= '</div>';

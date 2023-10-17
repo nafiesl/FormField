@@ -181,7 +181,7 @@ class TextFieldTest extends TestCase
         $generatedString = '<div class="form-group mb-3 ">';
         $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<div class="input-group">';
-        $generatedString .= '<span class="input-group-prepend"><div class="input-group-text">$</div></span>';
+        $generatedString .= '<span class="input-group-text">$</span>';
         $generatedString .= '<input class="form-control" name="key" type="text" id="key">';
         $generatedString .= '</div>';
         $generatedString .= '</div>';
@@ -199,7 +199,7 @@ class TextFieldTest extends TestCase
         $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
         $generatedString .= '<div class="input-group">';
         $generatedString .= '<input class="form-control" name="key" type="text" id="key">';
-        $generatedString .= '<span class="input-group-append"><div class="input-group-text">Days</div></span>';
+        $generatedString .= '<span class="input-group-text">Days</span>';
         $generatedString .= '</div>';
         $generatedString .= '</div>';
 
@@ -257,7 +257,7 @@ class TextFieldTest extends TestCase
         $generatedString = '<div class="form-group mb-3 ">';
         $generatedString .= '<label for="price" class="form-label fw-bold">Price</label>';
         $generatedString .= '<div class="input-group">';
-        $generatedString .= '<span class="input-group-prepend"><div class="input-group-text">Rp</div></span>';
+        $generatedString .= '<span class="input-group-text">Rp</span>';
         $generatedString .= '<input class="form-control text-right" name="price" type="text" id="price">';
         $generatedString .= '</div>';
         $generatedString .= '</div>';
@@ -274,7 +274,7 @@ class TextFieldTest extends TestCase
         $generatedString = '<div class="form-group mb-3 ">';
         $generatedString .= '<label for="price" class="form-label fw-bold">Price</label>';
         $generatedString .= '<div class="input-group">';
-        $generatedString .= '<span class="input-group-prepend"><div class="input-group-text">Rp</div></span>';
+        $generatedString .= '<span class="input-group-text">Rp</span>';
         $generatedString .= '<input class="form-control custom-class text-right" name="price" type="text" id="price">';
         $generatedString .= '</div>';
         $generatedString .= '</div>';
