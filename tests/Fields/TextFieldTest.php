@@ -91,6 +91,20 @@ class TextFieldTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_text_field_with_steps_attribute()
+    {
+        $generatedString = '<div class="form-group mb-3 ">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
+        $generatedString .= '<input class="form-control" steps="0.01" name="key" type="text" id="key">';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->text('key', ['steps' => '0.01'])
+        );
+    }
+
+    /** @test */
     public function it_returns_text_field_with_min_and_max_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';

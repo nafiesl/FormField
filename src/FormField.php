@@ -73,6 +73,10 @@ class FormField
             $fieldAttributes += ['placeholder' => $options['placeholder']];
         }
 
+        if (isset($options['steps'])) {
+            $fieldAttributes += ['steps' => $options['steps']];
+        }
+
         if ($hasError) {
             $fieldAttributes['class'] .= ' is-invalid';
         }
