@@ -2,11 +2,12 @@
 
 namespace Tests\Fields;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class MultiSelectFieldTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_multi_select_field()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -23,7 +24,7 @@ class MultiSelectFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_multi_select_field_with_required_attribute()
     {
         $generatedString = '<div class="form-group mb-3 required ">';
@@ -40,7 +41,7 @@ class MultiSelectFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_multi_select_field_with_array_of_selected_values()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -58,7 +59,7 @@ class MultiSelectFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_multi_select_field_with_collection_of_selected_values()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -76,7 +77,7 @@ class MultiSelectFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_multi_select_field_with_validation_error()
     {
         // Mock error message on "key" attribute.

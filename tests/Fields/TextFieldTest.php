@@ -2,11 +2,12 @@
 
 namespace Tests\Fields;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class TextFieldTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_default_text_field()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -20,7 +21,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_class_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -34,7 +35,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_disabled_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -48,7 +49,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_required_attribute()
     {
         $generatedString = '<div class="form-group mb-3 required ">';
@@ -62,7 +63,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_readonly_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -76,7 +77,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_autofocus_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -90,7 +91,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_min_and_max_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -104,7 +105,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_range_field_with_min_max_and_step_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -118,7 +119,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_placeholder_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -132,7 +133,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_style_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -146,7 +147,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_id_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -160,7 +161,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_info_text_line()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -175,7 +176,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_addon_before()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -192,7 +193,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_addon_after()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -209,7 +210,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_text_field_with_validation_error()
     {
         // Mock error message on "key" attribute.
@@ -230,7 +231,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_text_field_with_array_name_that_has_correct_validation_error()
     {
         // Mock error message on "key" attribute.
@@ -251,7 +252,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_price_field()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -268,7 +269,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_price_field_with_correct_given_class()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -285,7 +286,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_email_field()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -299,7 +300,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_password_field()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -313,7 +314,7 @@ class TextFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_plain_text_field_with_view_template()
     {
         $generatedString = '<div class="form-group mb-3 ">';

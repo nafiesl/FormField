@@ -2,11 +2,12 @@
 
 namespace Tests\Fields;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class CheckBoxesTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_default_checkboxes_field()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -21,7 +22,7 @@ class CheckBoxesTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_checkboxes_field_with_checked_value_collection()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -39,7 +40,7 @@ class CheckBoxesTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_checkboxes_field_with_checked_value_array()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -57,7 +58,7 @@ class CheckBoxesTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_checkboxes_field_with_info_text_line()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -75,7 +76,7 @@ class CheckBoxesTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_checkboxes_field_with_required_attribute()
     {
         $generatedString = '<div class="form-group mb-3 required ">';
@@ -90,7 +91,7 @@ class CheckBoxesTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_checkboxes_with_validation_error()
     {
         // Mock error message on "checkboxes" attribute.
@@ -112,7 +113,7 @@ class CheckBoxesTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_checkboxes_validation_error_for_each_index()
     {
         // Mock error message on "checkboxes" attribute.

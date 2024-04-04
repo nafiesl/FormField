@@ -2,11 +2,12 @@
 
 namespace Tests\Fields;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class RadiosTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_radios_field_with_array_of_radio_options()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -21,7 +22,7 @@ class RadiosTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_radios_field_with_collection_of_radio_options()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -36,7 +37,7 @@ class RadiosTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_radios_field_with_default_value()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -51,7 +52,7 @@ class RadiosTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_radios_field_with_info_text_line()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -69,7 +70,7 @@ class RadiosTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_radios_field_with_required_attribute()
     {
         $generatedString = '<div class="form-group mb-3 required ">';
@@ -86,7 +87,7 @@ class RadiosTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_radio_with_validation_error()
     {
         // Mock error message on "radios" attribute.

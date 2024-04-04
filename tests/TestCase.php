@@ -10,7 +10,7 @@ class TestCase extends BaseTestCase
 {
     protected $formField;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->formField = new FormField();

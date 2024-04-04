@@ -2,11 +2,12 @@
 
 namespace Tests\Fields;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class OtherFieldTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_text_display_field()
     {
         $generatedString = '<div class="form-group mb-3">';
@@ -20,7 +21,7 @@ class OtherFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_display_field_with_required_attribute()
     {
         $generatedString = '<div class="form-group mb-3 required ">';
@@ -34,7 +35,7 @@ class OtherFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_display_field_with_id_attribute()
     {
         $generatedString = '<div class="form-group mb-3">';
@@ -48,7 +49,7 @@ class OtherFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_file_upload_field()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -62,7 +63,7 @@ class OtherFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_file_upload_field_with_required_attribute()
     {
         $generatedString = '<div class="form-group mb-3 required ">';
@@ -76,7 +77,7 @@ class OtherFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_file_upload_field_with_info_text_line()
     {
         $generatedString = '<div class="form-group mb-3 ">';

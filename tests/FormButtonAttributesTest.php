@@ -2,9 +2,11 @@
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class FormButtonAttributesTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function form_button_with_default_properties()
     {
         $generatedString = '<form method="POST" action="'.url('/').'"';
@@ -23,7 +25,7 @@ class FormButtonAttributesTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function form_button_can_have_button_property()
     {
         $generatedString = '<form method="POST" action="'.url('/').'"';
@@ -43,7 +45,7 @@ class FormButtonAttributesTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function form_button_can_have_onsubmit_property()
     {
         $generatedString = '<form method="POST" action="'.url('/').'"';
@@ -70,7 +72,7 @@ class FormButtonAttributesTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function delete_button_with_default_properties()
     {
         $generatedString = '<form method="POST" action="'.url('/').'"';
@@ -92,7 +94,7 @@ class FormButtonAttributesTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function delete_form_button_can_have_additional_hidden_fields()
     {
         $generatedString = '<form method="POST" action="'.url('/').'"';
@@ -120,7 +122,7 @@ class FormButtonAttributesTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function delete_form_button_can_have_custom_onsubmit_property()
     {
         $generatedString = '<form method="POST" action="'.url('/').'"';
