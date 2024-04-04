@@ -76,7 +76,7 @@ class FormButtonAttributesTest extends TestCase
     public function delete_button_with_default_properties()
     {
         $generatedString = '<form method="POST" action="'.url('/').'"';
-        $generatedString .= ' accept-charset="UTF-8" class="del-form pull-right float-right"';
+        $generatedString .= ' accept-charset="UTF-8" class="del-form pull-right float-right float-end"';
         $generatedString .= ' onsubmit="return confirm(&quot;Are you sure to delete this?&quot;)"';
         $generatedString .= ' style="display:inline">';
         $generatedString .= '<input name="_method" type="hidden" value="DELETE">';
@@ -99,7 +99,7 @@ class FormButtonAttributesTest extends TestCase
     {
         $generatedString = '<form method="POST" action="'.url('/').'"';
         $generatedString .= ' accept-charset="UTF-8"';
-        $generatedString .= ' class="del-form pull-right float-right"';
+        $generatedString .= ' class="del-form pull-right float-right float-end"';
         $generatedString .= ' onsubmit="return confirm(&quot;Are you sure to delete this?&quot;)" style="display:inline">';
         $generatedString .= '<input name="_method" type="hidden" value="DELETE">';
         $generatedString .= '<input name="_token" type="hidden">';
@@ -128,7 +128,7 @@ class FormButtonAttributesTest extends TestCase
         $generatedString = '<form method="POST" action="'.url('/').'"';
         $generatedString .= ' accept-charset="UTF-8"';
         $generatedString .= ' onsubmit="return confirm(&quot;Sure to delete?&quot;)"';
-        $generatedString .= ' class="del-form pull-right float-right" style="display:inline">';
+        $generatedString .= ' class="del-form pull-right float-right float-end" style="display:inline">';
         $generatedString .= '<input name="_method" type="hidden" value="DELETE">';
         $generatedString .= '<input name="_token" type="hidden">';
         $generatedString .= '<input name="hidden_field" type="hidden" value="hidden_field_value">';

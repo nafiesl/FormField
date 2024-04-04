@@ -446,7 +446,7 @@ class FormField
     public function delete($form_params = [], $button_label = 'x', $button_options = [], $hiddenFields = [])
     {
         $form_params['method'] = 'delete';
-        $form_params['class'] = isset($form_params['class']) ? $form_params['class'] : 'del-form pull-right float-right';
+        $form_params['class'] = isset($form_params['class']) ? $form_params['class'] : 'del-form pull-right float-right float-end';
         if (isset($form_params['onsubmit'])) {
             if ($form_params['onsubmit'] != false) {
                 $form_params['onsubmit'] = $form_params['onsubmit'];
