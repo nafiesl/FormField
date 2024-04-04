@@ -24,7 +24,7 @@
         "konekt/html": "^6.5"
     },
     "require-dev": {
-        "orchestra/testbench": ">=3.0 <3.8"
+        "orchestra/testbench": "^9.0"
     },
     "extra": {
         "laravel": {
