@@ -82,13 +82,14 @@ class FormField
         if (isset($options['addon']['after'])) {
             $htmlForm .= '<span class="input-group-text">'.$options['addon']['after'].'</span>';
         }
-        if (isset($options['addon'])) {
-            $htmlForm .= '</div>';
-        }
 
         $htmlForm .= $this->getInfoTextLine($options);
 
         $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="invalid-feedback" role="alert">:message</span>');
+
+        if (isset($options['addon'])) {
+            $htmlForm .= '</div>';
+        }
 
         $htmlForm .= '</div>';
 

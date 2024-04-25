@@ -232,6 +232,30 @@ class TextFieldTest extends TestCase
     }
 
     #[Test]
+    public function it_shows_text_field_with_validation_error_inside_an_input_group()
+    {
+        // Mock error message on "key" attribute.
+        $errorBag = new \Illuminate\Support\MessageBag();
+        $errorBag->add('key', 'The key field is required.');
+
+        $this->formField->errorBag = $errorBag;
+
+        $generatedString = '<div class="form-group mb-3 has-error">';
+        $generatedString .= '<label for="key" class="form-label fw-bold">Key</label>';
+        $generatedString .= '<div class="input-group">';
+        $generatedString .= '<input class="form-control is-invalid" name="key" type="text" id="key">';
+        $generatedString .= '<span class="input-group-text">Days</span>';
+        $generatedString .= '<span class="invalid-feedback" role="alert">The key field is required.</span>';
+        $generatedString .= '</div>';
+        $generatedString .= '</div>';
+
+        $this->assertEquals(
+            $generatedString,
+            $this->formField->text('key', ['addon' => ['after' => 'Days']])
+        );
+    }
+
+    #[Test]
     public function it_shows_text_field_with_array_name_that_has_correct_validation_error()
     {
         // Mock error message on "key" attribute.
