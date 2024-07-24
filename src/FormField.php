@@ -601,6 +601,9 @@ class FormField
         if (isset($options['step'])) {
             $fieldAttributes += ['step' => $options['step']];
         }
+        if (isset($options['pattern'])) {
+            $fieldAttributes += ['pattern' => $options['pattern']];
+        }
         if (isset($options['style'])) {
             $fieldAttributes += ['style' => $options['style']];
         }
