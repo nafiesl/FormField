@@ -511,6 +511,7 @@ class FormField
     {
         $options['addon'] = ['before' => isset($options['currency']) ? $options['currency'] : 'Rp'];
         $options['class'] = isset($options['class']) ? $options['class'].' text-right' : 'text-right';
+        $options['pattern'] = isset($options['pattern']) ? $options['pattern'] : '[0-9]*';
 
         return $this->text($name, $options);
     }

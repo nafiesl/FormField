@@ -297,7 +297,7 @@ class TextFieldTest extends TestCase
         $generatedString .= '<label for="price" class="form-label fw-bold">Price</label>';
         $generatedString .= '<div class="input-group">';
         $generatedString .= '<span class="input-group-text">Rp</span>';
-        $generatedString .= '<input class="form-control text-right" name="price" type="text" id="price">';
+        $generatedString .= '<input class="form-control text-right" pattern="[0-9]*" name="price" type="text" id="price">';
         $generatedString .= '</div>';
         $generatedString .= '</div>';
 
@@ -314,7 +314,7 @@ class TextFieldTest extends TestCase
         $generatedString .= '<label for="price" class="form-label fw-bold">Price</label>';
         $generatedString .= '<div class="input-group">';
         $generatedString .= '<span class="input-group-text">Rp</span>';
-        $generatedString .= '<input class="form-control custom-class text-right" name="price" type="text" id="price">';
+        $generatedString .= '<input class="form-control custom-class text-right" pattern="[0-9]*" name="price" type="text" id="price">';
         $generatedString .= '</div>';
         $generatedString .= '</div>';
 
