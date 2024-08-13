@@ -2,11 +2,12 @@
 
 namespace Tests\Fields;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class TextareaFieldTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_default_textarea_field()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -20,7 +21,7 @@ class TextareaFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_textarea_field_with_rows_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -34,7 +35,7 @@ class TextareaFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_textarea_field_with_class_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -48,7 +49,7 @@ class TextareaFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_disabled_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -62,7 +63,7 @@ class TextareaFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_required_attribute()
     {
         $generatedString = '<div class="form-group mb-3 required ">';
@@ -76,7 +77,7 @@ class TextareaFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_readonly_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -90,7 +91,7 @@ class TextareaFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_text_field_with_placeholder_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -104,7 +105,7 @@ class TextareaFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_textarea_field_with_style_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -118,7 +119,7 @@ class TextareaFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_textarea_field_with_id_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -132,7 +133,7 @@ class TextareaFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_textarea_field_with_info_text_line()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -154,7 +155,7 @@ class TextareaFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_textarea_field_with_validation_error()
     {
         // Mock error message on "key" attribute.
@@ -175,7 +176,7 @@ class TextareaFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_textarea_field_with_array_name_that_has_correct_validation_error()
     {
         // Mock error message on "key" attribute.

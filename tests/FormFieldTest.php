@@ -3,16 +3,17 @@
 namespace Tests;
 
 use Luthfi\FormField\FormFieldFacade as FFF;
+use PHPUnit\Framework\Attributes\Test;
 
 class FormFieldTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_facade_accessor()
     {
         $this->assertEquals(FFF::text('key'), $this->formField->text('key'));
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_form_open()
     {
         $generatedString = '<form method="POST" action="http://localhost" accept-charset="UTF-8">';
@@ -21,7 +22,7 @@ class FormFieldTest extends TestCase
         $this->assertEquals($generatedString, $this->formField->open());
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_form_close()
     {
         $genereatedString = '</form>';

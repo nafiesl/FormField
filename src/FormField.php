@@ -82,13 +82,14 @@ class FormField
         if (isset($options['addon']['after'])) {
             $htmlForm .= '<span class="input-group-text">'.$options['addon']['after'].'</span>';
         }
-        if (isset($options['addon'])) {
-            $htmlForm .= '</div>';
-        }
 
         $htmlForm .= $this->getInfoTextLine($options);
 
         $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="invalid-feedback" role="alert">:message</span>');
+
+        if (isset($options['addon'])) {
+            $htmlForm .= '</div>';
+        }
 
         $htmlForm .= '</div>';
 
@@ -446,7 +447,7 @@ class FormField
     public function delete($form_params = [], $button_label = 'x', $button_options = [], $hiddenFields = [])
     {
         $form_params['method'] = 'delete';
-        $form_params['class'] = isset($form_params['class']) ? $form_params['class'] : 'del-form pull-right float-right';
+        $form_params['class'] = isset($form_params['class']) ? $form_params['class'] : 'del-form pull-right float-right float-end';
         if (isset($form_params['onsubmit'])) {
             if ($form_params['onsubmit'] != false) {
                 $form_params['onsubmit'] = $form_params['onsubmit'];
@@ -510,6 +511,7 @@ class FormField
     {
         $options['addon'] = ['before' => isset($options['currency']) ? $options['currency'] : 'Rp'];
         $options['class'] = isset($options['class']) ? $options['class'].' text-right' : 'text-right';
+        $options['pattern'] = isset($options['pattern']) ? $options['pattern'] : '[0-9]*';
 
         return $this->text($name, $options);
     }
@@ -599,6 +601,9 @@ class FormField
         }
         if (isset($options['step'])) {
             $fieldAttributes += ['step' => $options['step']];
+        }
+        if (isset($options['pattern'])) {
+            $fieldAttributes += ['pattern' => $options['pattern']];
         }
         if (isset($options['style'])) {
             $fieldAttributes += ['style' => $options['style']];

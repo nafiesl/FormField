@@ -20,11 +20,11 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.2",
-        "laravelcollective/html": ">=5.3"
+        "php": "^8.1",
+        "konekt/html": "^6.5"
     },
     "require-dev": {
-        "orchestra/testbench": ">=3.0 <3.8"
+        "orchestra/testbench": "^9.0"
     },
     "extra": {
         "laravel": {

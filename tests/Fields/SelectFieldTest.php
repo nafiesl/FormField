@@ -2,6 +2,7 @@
 
 namespace Tests\Fields;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class SelectFieldTest extends TestCase
@@ -9,7 +10,7 @@ class SelectFieldTest extends TestCase
     protected $selectOptions = [1 => 'Satu', 2 => 'Dua'];
     protected $selectOptionsString = '<option value="1">Satu</option><option value="2">Dua</option>';
 
-    /** @test */
+    #[Test]
     public function it_returns_select_field_with_array_of_select_options()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -26,7 +27,7 @@ class SelectFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_select_field_with_required_attribute()
     {
         $generatedString = '<div class="form-group mb-3 required ">';
@@ -43,7 +44,7 @@ class SelectFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_select_field_with_disabled_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -60,7 +61,7 @@ class SelectFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_select_field_with_readonly_attribute()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -77,7 +78,7 @@ class SelectFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_select_field_with_collection_of_select_options()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -94,7 +95,7 @@ class SelectFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_select_field_with_placeholder_set_to_false()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -110,7 +111,7 @@ class SelectFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_select_field_with_selected_values()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -128,7 +129,7 @@ class SelectFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_select_field_with_info_text_line()
     {
         $generatedString = '<div class="form-group mb-3 ">';
@@ -148,7 +149,7 @@ class SelectFieldTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_select_field_with_validation_error()
     {
         // Mock error message on "key" attribute.
