@@ -398,6 +398,322 @@ class FormField
     }
 
     /**
+     * Drop file input field with drag-and-drop and clipboard paste functionality.
+     *
+     * @param  string  $name  The file field name and id attribute.
+     * @param  array  $options  Additional attribute for the file input.
+     * @return string Generated drop file input form field.
+     */
+    public function fileDrop($name, $options = [])
+    {
+        $requiredClass = (isset($options['required']) && $options['required'] == true) ? 'required ' : '';
+        $hasError = $this->errorBag->has($this->formatArrayName($name));
+        $hasErrorClass = $hasError ? 'has-error' : '';
+        $htmlForm = '<div class="form-group mb-3 '.$requiredClass.$hasErrorClass.'">';
+
+        $htmlForm .= $this->setFormFieldLabel($name, $options);
+
+        $fieldId = isset($options['id']) ? $options['id'] : $name;
+        $accept = isset($options['accept']) ? $options['accept'] : '*/*';
+        $multiple = isset($options['multiple']) && $options['multiple'] ? 'multiple' : '';
+        $maxSize = isset($options['max_size']) ? $options['max_size'] : '10MB';
+        $allowedTypes = isset($options['allowed_types']) ? implode(', ', $options['allowed_types']) : 'All files';
+
+        // Sanitize field ID for use in HTML IDs (remove square brackets and other invalid characters)
+        $sanitizedFieldId = preg_replace('/[^a-zA-Z0-9_-]/', '', $fieldId);
+
+        $dropzoneId = 'dropzone-'.$sanitizedFieldId;
+        $fileInputId = 'file-input-'.$sanitizedFieldId;
+        $previewId = 'preview-'.$sanitizedFieldId;
+
+        // Container with dropzone styling
+        $htmlForm .= '<div id="'.$dropzoneId.'" class="file-dropzone border border-2 border-dashed rounded p-4 text-center position-relative" style="min-height: 150px; cursor: pointer; transition: all 0.3s ease;">';
+
+        // Hidden file input
+        $htmlForm .= '<input type="file" id="'.$fileInputId.'" name="'.$name.'" class="d-none" accept="'.$accept.'" '.$multiple;
+        if (isset($options['required']) && $options['required'] == true) {
+            $htmlForm .= ' required';
+        }
+        $htmlForm .= '>';
+
+        // Dropzone content
+        $htmlForm .= '<div class="dropzone-content">';
+        $htmlForm .= '<div class="mb-3">';
+        $htmlForm .= '<svg width="48" height="48" fill="currentColor" class="text-muted" viewBox="0 0 16 16">';
+        $htmlForm .= '<path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>';
+        $htmlForm .= '<path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>';
+        $htmlForm .= '</svg>';
+        $htmlForm .= '</div>';
+        $htmlForm .= '<h5 class="mb-2">Drop files here or click to browse</h5>';
+        $htmlForm .= '<p class="text-muted mb-2">Or paste images from clipboard (Ctrl+V)</p>';
+        $htmlForm .= '<small class="text-muted">Accepted: '.$allowedTypes.' | Max size: '.$maxSize.'</small>';
+        $htmlForm .= '</div>';
+
+        // Preview area
+        $htmlForm .= '<div id="'.$previewId.'" class="file-preview mt-3" style="display: none;"></div>';
+
+        $htmlForm .= '</div>';
+
+        // Add the JavaScript for drag-and-drop and clipboard functionality
+        $htmlForm .= $this->getFileDropScript($dropzoneId, $fileInputId, $previewId, $accept, $multiple);
+
+        $htmlForm .= $this->getInfoTextLine($options);
+
+        $htmlForm .= $this->errorBag->first($this->formatArrayName($name), '<span class="invalid-feedback" role="alert">:message</span>');
+
+        $htmlForm .= '</div>';
+
+        return $htmlForm;
+    }
+
+    /**
+     * Generate JavaScript for drop file input functionality.
+     *
+     * @param  string  $dropzoneId  The dropzone element ID.
+     * @param  string  $fileInputId  The file input element ID.
+     * @param  string  $previewId  The preview element ID.
+     * @param  string  $accept  File accept types.
+     * @param  string  $multiple  Multiple files flag.
+     * @return string JavaScript code.
+     */
+    private function getFileDropScript($dropzoneId, $fileInputId, $previewId, $accept, $multiple)
+    {
+        $script = '<script>';
+        $script .= '(function() {';
+        $script .= 'const dropzone = document.getElementById("'.$dropzoneId.'");';
+        $script .= 'const fileInput = document.getElementById("'.$fileInputId.'");';
+        $script .= 'const preview = document.getElementById("'.$previewId.'");';
+        $script .= 'let selectedFiles = [];';
+
+        // Click handler
+        $script .= 'dropzone.addEventListener("click", function(e) {';
+        $script .= 'if (e.target === dropzone || e.target.closest(".dropzone-content")) {';
+        $script .= 'fileInput.click();';
+        $script .= '}';
+        $script .= '});';
+
+        // Drag and drop handlers
+        $script .= 'dropzone.addEventListener("dragover", function(e) {';
+        $script .= 'e.preventDefault();';
+        $script .= 'dropzone.style.borderColor = "#007bff";';
+        $script .= 'dropzone.style.backgroundColor = "#f8f9fa";';
+        $script .= '});';
+
+        $script .= 'dropzone.addEventListener("dragleave", function(e) {';
+        $script .= 'e.preventDefault();';
+        $script .= 'dropzone.style.borderColor = "";';
+        $script .= 'dropzone.style.backgroundColor = "";';
+        $script .= '});';
+
+        $script .= 'dropzone.addEventListener("drop", function(e) {';
+        $script .= 'e.preventDefault();';
+        $script .= 'dropzone.style.borderColor = "";';
+        $script .= 'dropzone.style.backgroundColor = "";';
+        $script .= 'const files = Array.from(e.dataTransfer.files);';
+        $script .= 'if (files.length > 0) {';
+        $script .= 'addFiles(files);';
+        $script .= '}';
+        $script .= '});';
+
+        // File input change handler
+        $script .= 'fileInput.addEventListener("change", function(e) {';
+        $script .= 'const files = Array.from(e.target.files);';
+        $script .= 'addFiles(files);';
+        $script .= '});';
+
+        // Clipboard paste handler
+        $script .= 'let lastDropzoneInteraction = null;';
+        $script .= 'let dropzoneInteractionTimeout = null;';
+
+        // Track interactions with the dropzone
+        $script .= 'dropzone.addEventListener("click", function() {';
+        $script .= 'lastDropzoneInteraction = Date.now();';
+        $script .= 'clearTimeout(dropzoneInteractionTimeout);';
+        $script .= 'dropzoneInteractionTimeout = setTimeout(() => { lastDropzoneInteraction = null; }, 10000);';
+        $script .= '});';
+
+        $script .= 'dropzone.addEventListener("focus", function() {';
+        $script .= 'lastDropzoneInteraction = Date.now();';
+        $script .= 'clearTimeout(dropzoneInteractionTimeout);';
+        $script .= 'dropzoneInteractionTimeout = setTimeout(() => { lastDropzoneInteraction = null; }, 10000);';
+        $script .= '}, true);';
+
+        $script .= 'document.addEventListener("paste", function(e) {';
+        $script .= 'let shouldHandle = false;';
+
+        // Check if activeElement is inside dropzone
+        $script .= 'if (document.activeElement && (dropzone.contains(document.activeElement) || document.activeElement.closest("#'.$dropzoneId.'"))) {';
+        $script .= 'shouldHandle = true;';
+        $script .= '}';
+
+        // Check if dropzone was recently interacted with
+        $script .= 'if (!shouldHandle && lastDropzoneInteraction && (Date.now() - lastDropzoneInteraction < 5000)) {';
+        $script .= 'shouldHandle = true;';
+        $script .= '}';
+
+        // Check if dropzone is visible and cursor is over it
+        $script .= 'if (!shouldHandle) {';
+        $script .= 'const rect = dropzone.getBoundingClientRect();';
+        $script .= 'const centerX = rect.left + rect.width / 2;';
+        $script .= 'const centerY = rect.top + rect.height / 2;';
+        $script .= 'const elementAtCenter = document.elementFromPoint(centerX, centerY);';
+        $script .= 'if (elementAtCenter && (dropzone.contains(elementAtCenter) || elementAtCenter === dropzone)) {';
+        $script .= 'shouldHandle = true;';
+        $script .= '}';
+        $script .= '}';
+
+        $script .= 'if (shouldHandle) {';
+        $script .= 'const items = e.clipboardData.items;';
+        $script .= 'const files = [];';
+        $script .= 'for (let i = 0; i < items.length; i++) {';
+        $script .= 'if (items[i].type.indexOf("image") !== -1) {';
+        $script .= 'const file = items[i].getAsFile();';
+        $script .= 'if (isFileAccepted(file, "'.$accept.'")) {';
+        $script .= 'files.push(file);';
+        $script .= '}';
+        $script .= '}';
+        $script .= '}';
+        $script .= 'if (files.length > 0) {';
+        $script .= 'addFiles(files);';
+        $script .= 'e.preventDefault();';
+        $script .= '}';
+        $script .= '}';
+        $script .= '});';
+
+        // File handling functions with validation
+        $script .= 'function isFileAccepted(file, acceptString) {';
+        $script .= 'if (!acceptString || acceptString === "*/*") return true;';
+        $script .= 'const accepts = acceptString.split(",").map(s => s.trim());';
+        $script .= 'for (let accept of accepts) {';
+        $script .= 'if (accept.startsWith(".")) {';
+        $script .= 'if (file.name.toLowerCase().endsWith(accept.toLowerCase())) return true;';
+        $script .= '} else if (accept.includes("/*")) {';
+        $script .= 'const baseType = accept.split("/")[0];';
+        $script .= 'if (file.type.startsWith(baseType + "/")) return true;';
+        $script .= '} else if (file.type === accept) {';
+        $script .= 'return true;';
+        $script .= '}';
+        $script .= '}';
+        $script .= 'return false;';
+        $script .= '}';
+
+        $script .= 'function addFiles(newFiles) {';
+        $script .= 'const acceptedFiles = [];';
+        $script .= 'const rejectedFiles = [];';
+        $script .= 'for (let file of newFiles) {';
+        $script .= 'if (isFileAccepted(file, "'.$accept.'")) {';
+        $script .= 'acceptedFiles.push(file);';
+        $script .= '} else {';
+        $script .= 'rejectedFiles.push(file);';
+        $script .= '}';
+        $script .= '}';
+
+        $script .= 'if (rejectedFiles.length > 0) {';
+        $script .= 'const rejectedNames = rejectedFiles.map(f => f.name).join(", ");';
+        $script .= 'alert("The following files are not accepted based on the file type restrictions: " + rejectedNames);';
+        $script .= '}';
+
+        $script .= 'if (acceptedFiles.length > 0) {';
+        $script .= 'if ("'.$multiple.'" === "multiple") {';
+        $script .= 'selectedFiles = selectedFiles.concat(acceptedFiles);';
+        $script .= '} else {';
+        $script .= 'selectedFiles = [acceptedFiles[0]];';
+        $script .= '}';
+        $script .= 'updateFileInput();';
+        $script .= 'renderFiles();';
+        $script .= '}';
+        $script .= '}';
+
+        $script .= 'function removeFile(index) {';
+        $script .= 'selectedFiles.splice(index, 1);';
+        $script .= 'updateFileInput();';
+        $script .= 'renderFiles();';
+        $script .= '}';
+
+        $script .= 'function updateFileInput() {';
+        $script .= 'const dt = new DataTransfer();';
+        $script .= 'selectedFiles.forEach(file => dt.items.add(file));';
+        $script .= 'fileInput.files = dt.files;';
+        $script .= '}';
+
+        $script .= 'function renderFiles() {';
+        $script .= 'preview.innerHTML = "";';
+        $script .= 'if (selectedFiles.length > 0) {';
+        $script .= 'preview.style.display = "block";';
+        $script .= 'const fileList = document.createElement("div");';
+        $script .= 'fileList.className = "list-group";';
+
+        $script .= 'for (let i = 0; i < selectedFiles.length; i++) {';
+        $script .= 'const file = selectedFiles[i];';
+        $script .= 'const fileItem = document.createElement("div");';
+        $script .= 'fileItem.className = "list-group-item d-flex justify-content-between align-items-center";';
+        $script .= 'fileItem.setAttribute("data-file-index", i);';
+
+        $script .= 'const fileInfo = document.createElement("div");';
+        $script .= 'fileInfo.innerHTML = "<strong>" + file.name + "</strong><br><small class=\"text-muted\">" + formatFileSize(file.size) + "</small>";';
+
+        $script .= 'const fileActions = document.createElement("div");';
+        $script .= 'fileActions.className = "d-flex align-items-center gap-2";';
+
+        $script .= 'const fileIcon = document.createElement("span");';
+        $script .= 'if (file.type.startsWith("image/")) {';
+        $script .= 'fileIcon.innerHTML = "🖼️";';
+        $script .= '} else if (file.type.includes("pdf")) {';
+        $script .= 'fileIcon.innerHTML = "📄";';
+        $script .= '} else {';
+        $script .= 'fileIcon.innerHTML = "📎";';
+        $script .= '}';
+
+        $script .= 'const deleteBtn = document.createElement("button");';
+        $script .= 'deleteBtn.type = "button";';
+        $script .= 'deleteBtn.className = "btn btn-sm btn-outline-danger";';
+        $script .= 'deleteBtn.innerHTML = "×";';
+        $script .= 'deleteBtn.title = "Remove file";';
+        $script .= 'deleteBtn.setAttribute("data-file-index", i);';
+        $script .= 'deleteBtn.addEventListener("click", function(e) {';
+        $script .= 'e.preventDefault();';
+        $script .= 'removeFile(parseInt(this.getAttribute("data-file-index")));';
+        $script .= '});';
+
+        $script .= 'fileActions.appendChild(fileIcon);';
+        $script .= 'fileActions.appendChild(deleteBtn);';
+
+        $script .= 'fileItem.appendChild(fileInfo);';
+        $script .= 'fileItem.appendChild(fileActions);';
+        $script .= 'fileList.appendChild(fileItem);';
+        $script .= '}';
+
+        $script .= 'preview.appendChild(fileList);';
+        $script .= '} else {';
+        $script .= 'preview.style.display = "none";';
+        $script .= '}';
+        $script .= '}';
+
+        // File size formatter
+        $script .= 'function formatFileSize(bytes) {';
+        $script .= 'if (bytes === 0) return "0 Bytes";';
+        $script .= 'const k = 1024;';
+        $script .= 'const sizes = ["Bytes", "KB", "MB", "GB"];';
+        $script .= 'const i = Math.floor(Math.log(bytes) / Math.log(k));';
+        $script .= 'return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];';
+        $script .= '}';
+
+        // Make dropzone focusable for accessibility
+        $script .= 'dropzone.setAttribute("tabindex", "0");';
+        $script .= 'dropzone.addEventListener("keydown", function(e) {';
+        $script .= 'if (e.key === "Enter" || e.key === " ") {';
+        $script .= 'e.preventDefault();';
+        $script .= 'fileInput.click();';
+        $script .= '}';
+        $script .= '});';
+
+        $script .= '})();';
+        $script .= '</script>';
+
+        return $script;
+    }
+
+    /**
      * One form which only have "one button" and "hidden fields".
      * This is suitable for, e.g. set status, delete button,
      * or any other "one-click-action" button.
